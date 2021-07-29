@@ -6,11 +6,13 @@ const schema = Schema.object()
   .prop(
     'LOG_LEVEL',
     Schema.string().enum(['fatal', 'error', 'warn', 'info', 'debug', 'trace', 'silent']).default('info'),
-  );
+  )
+  .prop('MONGO_URI', Schema.string());
 
 interface Env {
   PORT: string;
   LOG_LEVEL: string;
+  MONGO_URI?: string;
 }
 
 const env = envSchema({
