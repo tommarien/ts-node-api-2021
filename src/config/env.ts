@@ -1,25 +1,21 @@
-import { Static, Type } from '@sinclair/typebox';
 import envSchema from 'env-schema';
+import Schema from 'fluent-json-schema';
 
-const schema = Type.Object({
-  PORT: Type.String({ default: 3000 }),
-  LOG_LEVEL: Type.Union(
-    [
-      Type.Literal('fatal'),
-      Type.Literal('error'),
-      Type.Literal('warn'),
-      Type.Literal('info'),
-      Type.Literal('debug'),
-      Type.Literal('trace'),
-      Type.Literal('silent'),
-    ],
-    { default: 'info' },
-  ),
-});
+const schema = Schema.object()
+  .prop('PORT', Schema.string().default('3000'))
+  .prop(
+    'LOG_LEVEL',
+    Schema.string().enum(['fatal', 'error', 'warn', 'info', 'debug', 'trace', 'silent']).default('info'),
+  );
+
+interface Env {
+  PORT: string;
+  LOG_LEVEL: string;
+}
 
 const env = envSchema({
   dotenv: true,
-  schema: Type.Strict(schema),
+  schema,
 });
 
-export default env as Static<typeof schema>;
+export default env as unknown as Env;
