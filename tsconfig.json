@@ -73,6 +73,5 @@
   },
   "include": [
     "src",
-    "jest.*.js"
   ]
 }
