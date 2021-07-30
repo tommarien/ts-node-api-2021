@@ -1,6 +1,6 @@
 import server from './server.js';
-import env from './config/env.js';
-import * as mongoDb from './db/mongodb.js';
+import config from './config.js';
+import * as mongo from './db/mongodb.js';
 
 // Good practice to stop processing when an unhandledRejection occurs
 process.on('unhandledRejection', (err) => {
@@ -9,8 +9,8 @@ process.on('unhandledRejection', (err) => {
   process.exit(1);
 });
 
-await mongoDb.connect();
-await server.listen(env.PORT);
+await mongo.connect();
+await server.listen(config.server.port);
 
 const signals: NodeJS.Signals[] = ['SIGINT', 'SIGTERM'];
 for (const signal of signals) {
@@ -19,7 +19,7 @@ for (const signal of signals) {
     server.log.info({ signal }, 'closing application');
     server
       .close()
-      .then(mongoDb.disconnect)
+      .then(mongo.disconnect)
       .then(
         () => {
           server.log.info({ signal }, 'application closed');

@@ -1,5 +1,5 @@
 import mongodb, { Collection, ObjectId } from 'mongodb';
-import env from '../config/env.js';
+import config from '../config.js';
 
 let mongoClient: mongodb.MongoClient | undefined;
 
@@ -14,7 +14,7 @@ export interface ProductCategory {
 }
 
 function createClient() {
-  const uri = env.MONGO_URI;
+  const { uri } = config.mongo;
   if (!uri) throw new Error('No Mongo URI configured (MONGO_URI)');
 
   mongoClient = new mongodb.MongoClient(uri);
@@ -22,17 +22,15 @@ function createClient() {
   return mongoClient;
 }
 
-export async function connect(): Promise<void> {
-  const client = createClient();
-
+export async function connect(client: mongodb.MongoClient = createClient()): Promise<void> {
+  mongoClient = client;
   await client.connect();
 }
 
 export function getDb(): Db {
-  const client = mongoClient;
-  if (!client) throw new Error('No Db connected');
+  if (!mongoClient) throw new Error('No Db connected');
 
-  const db = client.db();
+  const db = mongoClient.db();
 
   return {
     productCategories: db.collection('productCategories'),

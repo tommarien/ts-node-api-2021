@@ -1,6 +1,6 @@
 import fastify from 'fastify';
-import env from './config/env.js';
+import config from './config.js';
 
-const server = fastify({ logger: { level: env.LOG_LEVEL }, disableRequestLogging: true });
+const server = fastify({ logger: { level: config.logger.level }, disableRequestLogging: true });
 
 export default server;
