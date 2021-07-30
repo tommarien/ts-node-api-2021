@@ -15,7 +15,7 @@
     "clean": "rimraf coverage dist",
     "lint": "concurrently -n tsc,lint, -c \"cyan.bold,green.bold\" \"tsc --noEmit --pretty\" \"eslint --ext .js,.ts ./\"",
     "serve": "nodemon -w ./src --exec node --loader ts-node/esm --no-warnings src/main.ts | pino-pretty --translateTime --ignore hostname",
-    "test": "tap -R spec --node-arg=--loader=ts-node/esm --node-arg=--no-warnings"
+    "test": "tap -R spec --no-coverage-report --node-arg=--loader=ts-node/esm --node-arg=--no-warnings"
   },
   "devDependencies": {
     "@types/node": "^16.4.5",

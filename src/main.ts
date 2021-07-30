@@ -17,6 +17,7 @@ for (const signal of signals) {
   // Use once() so that double signals exits the app
   process.once(signal, () => {
     server.log.info({ signal }, 'closing application');
+
     server
       .close()
       .then(mongo.disconnect)
