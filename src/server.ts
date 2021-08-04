@@ -1,10 +1,10 @@
 import fastify from 'fastify';
-import config from './config.js';
+import { Config } from './config';
 
-const server = fastify({
-  trustProxy: true,
-  disableRequestLogging: true,
-  logger: { level: config.logger.level },
-});
-
-export default server;
+export default function createServer(config: Config): ReturnType<typeof fastify> {
+  return fastify({
+    trustProxy: true,
+    disableRequestLogging: true,
+    logger: { level: config.logger.level },
+  });
+}

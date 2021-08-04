@@ -8,14 +8,14 @@
   "engines": {
     "node": "14.x"
   },
-  "type": "module",
+  "type": "commonjs",
   "module": "dist/main.js",
   "scripts": {
     "build": "tsc --project tsconfig.prod.json --sourceMap",
     "clean": "rimraf coverage dist",
     "lint": "concurrently -n tsc,lint, -c \"cyan.bold,green.bold\" \"tsc --noEmit --pretty\" \"eslint --ext .js,.ts ./\"",
-    "serve": "nodemon -w ./src --exec node --loader ts-node/esm --no-warnings src/main.ts | pino-pretty --translateTime --ignore hostname",
-    "test": "tap --no-coverage-report --node-arg=--loader=ts-node/esm --node-arg=--no-warnings"
+    "serve": "nodemon -w ./src  --exec ts-node src/main.ts | pino-pretty --translateTime --ignore hostname",
+    "test": "tap --ts"
   },
   "devDependencies": {
     "@types/node": "^14.17.7",

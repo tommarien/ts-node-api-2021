@@ -1,6 +1,7 @@
-import server from './server.js';
-import config from './config.js';
-import * as mongo from './db/mongodb.js';
+import { MongoClient } from 'mongodb';
+import createServer from './server';
+import getConfig from './config';
+import * as mongo from './db/mongodb';
 
 // Good practice to stop processing when an unhandledRejection occurs
 process.on('unhandledRejection', (err) => {
@@ -9,27 +10,35 @@ process.on('unhandledRejection', (err) => {
   process.exit(1);
 });
 
-await mongo.connect();
-await server.listen(config.server.port);
+async function main() {
+  const config = getConfig();
 
-const signals: NodeJS.Signals[] = ['SIGINT', 'SIGTERM'];
-for (const signal of signals) {
-  // Use once() so that double signals exits the app
-  process.once(signal, () => {
-    server.log.info({ signal }, 'closing application');
+  const server = createServer(config);
 
-    server
-      .close()
-      .then(mongo.disconnect)
-      .then(
-        () => {
-          server.log.info({ signal }, 'application closed');
-          process.exit(0);
-        },
-        (err) => {
-          server.log.error({ err }, 'Error closing the application');
-          process.exit(1);
-        },
-      );
-  });
+  await mongo.connect(new MongoClient(config.mongo.uri));
+  await server.listen(config.server.port);
+
+  const signals: NodeJS.Signals[] = ['SIGINT', 'SIGTERM'];
+  for (const signal of signals) {
+    // Use once() so that double signals exits the app
+    process.once(signal, () => {
+      server.log.info({ signal }, 'closing application');
+
+      server
+        .close()
+        .then(mongo.disconnect)
+        .then(
+          () => {
+            server.log.info({ signal }, 'application closed');
+            process.exit(0);
+          },
+          (err) => {
+            server.log.error({ err }, 'Error closing the application');
+            process.exit(1);
+          },
+        );
+    });
+  }
 }
+
+main();

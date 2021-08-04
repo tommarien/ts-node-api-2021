@@ -5,8 +5,7 @@
     "prettier"
   ],
   "env": {
-    "node": true,
-    "jest": true
+    "node": true
   },
   "parserOptions": {
     "project": "./tsconfig.json"
@@ -15,7 +14,7 @@
     "import/prefer-default-export": "off",
     "import/extensions": [
       "error",
-      "ignorePackages"
+      "never"
     ],
     "no-plusplus": "off",
     "no-restricted-syntax": [ // Removed ForOfStatement
