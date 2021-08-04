@@ -1,4 +1,4 @@
-import server from './server.js';
+import createServer from './server.js';
 import config from './config.js';
 import * as mongo from './db/mongodb.js';
 
@@ -8,6 +8,8 @@ process.on('unhandledRejection', (err) => {
   console.error(err);
   process.exit(1);
 });
+
+const server = createServer();
 
 await mongo.connect();
 await server.listen(config.server.port);

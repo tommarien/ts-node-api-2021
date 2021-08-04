@@ -73,5 +73,6 @@
   },
   "include": [
     "src",
+    "tap-loader.config.js"
   ]
 }
