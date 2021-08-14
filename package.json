@@ -12,7 +12,7 @@
   "module": "dist/main.js",
   "scripts": {
     "build": "tsc --project tsconfig.prod.json --sourceMap",
-    "clean": "rimraf coverage dist",
+    "clean": "rimraf .nyc_output dist",
     "lint": "concurrently -n tsc,lint, -c \"cyan.bold,green.bold\" \"tsc --noEmit --pretty\" \"eslint --ext .js,.ts ./\"",
     "serve": "nodemon -w ./src  --exec ts-node src/main.ts | pino-pretty --translateTime --ignore hostname",
     "test": "tap --ts"
