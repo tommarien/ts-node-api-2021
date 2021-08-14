@@ -2274,7 +2274,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"env-schema@npm:^3.2.0":
+"env-schema@npm:^3.3.0":
   version: 3.3.0
   resolution: "env-schema@npm:3.3.0"
   dependencies:
@@ -2757,7 +2757,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"fastify@npm:^3.20.1":
+"fastify@npm:^3.20.2":
   version: 3.20.2
   resolution: "fastify@npm:3.20.2"
   dependencies:
@@ -6577,12 +6577,12 @@ fsevents@~2.3.2:
     "@typescript-eslint/parser": ^4.29.1
     concurrently: ^6.2.1
     dotenv: ^10.0.0
-    env-schema: ^3.2.0
+    env-schema: ^3.3.0
     eslint: ^7.32.0
     eslint-config-airbnb-typescript: ^12.3.1
     eslint-config-prettier: ^8.3.0
     eslint-plugin-import: ^2.24.0
-    fastify: ^3.20.1
+    fastify: ^3.20.2
     fluent-json-schema: ^3.0.1
     mongodb: ^4.1.0
     nodemon: ^2.0.12

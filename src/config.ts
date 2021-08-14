@@ -22,10 +22,10 @@ export interface Config {
 }
 
 export default function getConfig(): Config {
-  const env = envSchema({
+  const env = envSchema<Env>({
     dotenv: !process.env.TAP,
     schema,
-  }) as unknown as Env;
+  });
 
   const config: Config = {
     isProduction: env.NODE_ENV === 'production',
