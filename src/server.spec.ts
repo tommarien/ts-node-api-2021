@@ -1,5 +1,6 @@
 import tap from 'tap';
 import sinon from 'sinon';
+import crypto from 'crypto';
 import createServer from './server';
 
 tap.afterEach(() => sinon.restore);
@@ -40,4 +41,22 @@ tap.test('it echoes the value of the x-request-id header', async (t) => {
 
   t.equal(response.statusCode, 200);
   t.same(response.json(), { reqId });
+});
+
+tap.test('it creates a new request id using randomUUID', async (t) => {
+  const reqId = 'request-id';
+
+  const randomUUIDStub = sinon.stub(crypto, 'randomUUID').returns(reqId);
+
+  const server = await setupServer();
+
+  const response = await server.inject({
+    method: 'GET',
+    url: '/echo-request-id',
+  });
+
+  t.plan(3);
+  t.equal(response.statusCode, 200);
+  t.same(response.json(), { reqId });
+  t.ok(randomUUIDStub.called);
 });
