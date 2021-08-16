@@ -1,7 +1,7 @@
 import tap from 'tap';
 import sinon from 'sinon';
 import crypto from 'crypto';
-import { buildTestServer } from '../test/testServer';
+import { buildTestServer } from '../test/server';
 
 tap.afterEach(() => sinon.restore);
 
