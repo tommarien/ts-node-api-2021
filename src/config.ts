@@ -1,15 +1,17 @@
 import envSchema from 'env-schema';
 import Schema from 'fluent-json-schema';
 
+const ALLOWED_LOGLEVELS = ['fatal', 'error', 'warn', 'info', 'debug', 'trace', 'silent'] as const;
+
 const schema = Schema.object()
-  .prop('LOG_LEVEL', Schema.string().enum(['fatal', 'error', 'warn', 'info', 'debug', 'trace', 'silent']))
+  .prop('LOG_LEVEL', Schema.string().enum([...ALLOWED_LOGLEVELS]))
   .prop('MONGO_URI', Schema.string().required())
   .prop('NODE_ENV', Schema.string())
   .prop('PORT', Schema.string());
 
 interface Env {
   PORT?: string;
-  LOG_LEVEL?: string;
+  LOG_LEVEL?: typeof ALLOWED_LOGLEVELS[number];
   MONGO_URI: string;
   NODE_ENV?: string;
 }
@@ -18,7 +20,7 @@ export interface Config {
   isProduction: boolean;
   server: { port: string };
   mongo: { uri: string };
-  logger: { level: string };
+  logger: { level: typeof ALLOWED_LOGLEVELS[number] };
 }
 
 export default function getConfig(): Config {

@@ -15,7 +15,7 @@
     "clean": "rimraf .nyc_output dist",
     "lint": "concurrently -n tsc,lint, -c \"cyan.bold,green.bold\" \"tsc --noEmit --pretty\" \"eslint --ext .js,.ts ./\"",
     "serve": "nodemon -w ./src  --exec ts-node src/main.ts | pino-pretty --translateTime --ignore hostname",
-    "test": "tap --ts"
+    "test": "tap --ts --test-ignore test"
   },
   "devDependencies": {
     "@commitlint/cli": "^13.1.0",

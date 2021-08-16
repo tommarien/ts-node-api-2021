@@ -1,17 +1,12 @@
 import tap from 'tap';
 import sinon from 'sinon';
 import crypto from 'crypto';
-import createServer from './server';
+import { buildTestServer } from '../test/testServer';
 
 tap.afterEach(() => sinon.restore);
 
 async function setupServer() {
-  const server = createServer({
-    isProduction: false,
-    server: { port: '3000' },
-    mongo: { uri: 'mongodb://unused' },
-    logger: { level: 'info' },
-  });
+  const server = buildTestServer();
 
   server.route({
     method: 'GET',
