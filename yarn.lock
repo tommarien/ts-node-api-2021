@@ -1784,6 +1784,20 @@ __metadata:
   languageName: node
   linkType: hard
 
+"cli-table3@npm:^0.6.0":
+  version: 0.6.0
+  resolution: "cli-table3@npm:0.6.0"
+  dependencies:
+    colors: ^1.1.2
+    object-assign: ^4.1.0
+    string-width: ^4.2.0
+  dependenciesMeta:
+    colors:
+      optional: true
+  checksum: 98682a2d3eef5ad07d34a08f90398d0640004e28ecf8eb59006436f11ed7b4d453db09f46c2ea880618fbd61fee66321b3b3ee1b20276bc708b6baf6f9663d75
+  languageName: node
+  linkType: hard
+
 "cli-truncate@npm:^2.1.0":
   version: 2.1.0
   resolution: "cli-truncate@npm:2.1.0"
@@ -1891,12 +1905,26 @@ __metadata:
   languageName: node
   linkType: hard
 
+"colors@npm:^1.1.2":
+  version: 1.4.0
+  resolution: "colors@npm:1.4.0"
+  checksum: 98aa2c2418ad87dedf25d781be69dc5fc5908e279d9d30c34d8b702e586a0474605b3a189511482b9d5ed0d20c867515d22749537f7bc546256c6014f3ebdcec
+  languageName: node
+  linkType: hard
+
 "combined-stream@npm:^1.0.6, combined-stream@npm:~1.0.6":
   version: 1.0.8
   resolution: "combined-stream@npm:1.0.8"
   dependencies:
     delayed-stream: ~1.0.0
   checksum: 49fa4aeb4916567e33ea81d088f6584749fc90c7abec76fd516bf1c5aa5c79f3584b5ba3de6b86d26ddd64bae5329c4c7479343250cfe71c75bb366eae53bb7c
+  languageName: node
+  linkType: hard
+
+"commander@npm:^8.1.0":
+  version: 8.1.0
+  resolution: "commander@npm:8.1.0"
+  checksum: 75abce64ed13cc7703606dbe9e6cfcabe04f382c6c3404c3054ac4f3917064c40ddbf3eecd8917594426d547a85b4cacbc15e986d55a7723a11494ec19b570da
   languageName: node
   linkType: hard
 
@@ -2108,7 +2136,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"date-fns@npm:^2.16.1":
+"date-fns@npm:^2.16.1, date-fns@npm:^2.23.0":
   version: 2.23.0
   resolution: "date-fns@npm:2.23.0"
   checksum: 485216d550255a548552db16379e7a5cd440e262b90fbdc0362f63ee71d0e74bd00ce29ca8d76b343f6df36c1ecb6f22edba0b72848a4c32674e755619695c1f
@@ -3011,6 +3039,13 @@ __metadata:
   dependencies:
     deepmerge: ^4.2.2
   checksum: 7ffa225bb0049acb95e5dd4f80c4cd362fed1e328b3be5bf04a62b2faab7c07b886231ca837f882e6432a17919b75f1bb857c7706fa6b84342a6c153b9c54f3d
+  languageName: node
+  linkType: hard
+
+"fn-args@npm:^5.0.0":
+  version: 5.0.0
+  resolution: "fn-args@npm:5.0.0"
+  checksum: 51af66d5188a6243a33a9afc7309bcf24908331b16d8df2c10afad8dea0f39985e50ab9b53fd4bc4dfebcdc3cf7e1cb80cd46c76d69d34e4fd9deaa170b19765
   languageName: node
   linkType: hard
 
@@ -4522,6 +4557,24 @@ fsevents@~2.3.2:
   languageName: node
   linkType: hard
 
+"migrate-mongo@npm:^8.2.3":
+  version: 8.2.3
+  resolution: "migrate-mongo@npm:8.2.3"
+  dependencies:
+    cli-table3: ^0.6.0
+    commander: ^8.1.0
+    date-fns: ^2.23.0
+    fn-args: ^5.0.0
+    fs-extra: ^10.0.0
+    lodash: ^4.17.21
+    mongodb: ^4.0.1
+    p-each-series: ^2.2.0
+  bin:
+    migrate-mongo: bin/migrate-mongo.js
+  checksum: b394ad96aaf50b12e493c3c29108775bb6f87f10058d82acfab5f1ddb4803ed1d9a399d74e5f0f9ac3a6da4cb17b1fd25871d6e8fa5946ca5a58fb6fc4f6d71b
+  languageName: node
+  linkType: hard
+
 "mime-db@npm:1.49.0":
   version: 1.49.0
   resolution: "mime-db@npm:1.49.0"
@@ -4682,7 +4735,7 @@ fsevents@~2.3.2:
   languageName: node
   linkType: hard
 
-"mongodb@npm:^4.1.0":
+"mongodb@npm:^4.0.1, mongodb@npm:^4.1.0":
   version: 4.1.0
   resolution: "mongodb@npm:4.1.0"
   dependencies:
@@ -5058,6 +5111,13 @@ fsevents@~2.3.2:
   version: 1.1.0
   resolution: "p-cancelable@npm:1.1.0"
   checksum: 2db3814fef6d9025787f30afaee4496a8857a28be3c5706432cbad76c688a6db1874308f48e364a42f5317f5e41e8e7b4f2ff5c8ff2256dbb6264bc361704ece
+  languageName: node
+  linkType: hard
+
+"p-each-series@npm:^2.2.0":
+  version: 2.2.0
+  resolution: "p-each-series@npm:2.2.0"
+  checksum: 5fbe2f1f1966f55833bd401fe36f7afe410707d5e9fb6032c6dde8aa716d50521c3bb201fdb584130569b5941d5e84993e09e0b3f76a474288e0ede8f632983c
   languageName: node
   linkType: hard
 
@@ -6756,6 +6816,7 @@ fsevents@~2.3.2:
     eslint-plugin-import: ^2.24.0
     fastify: ^3.20.2
     fluent-json-schema: ^3.0.1
+    migrate-mongo: ^8.2.3
     mongodb: ^4.1.0
     nodemon: ^2.0.12
     pino-pretty: ^5.1.3
