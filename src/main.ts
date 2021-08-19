@@ -1,6 +1,6 @@
 import { MongoClient } from 'mongodb';
 import createServer from './server';
-import getConfig from './config';
+import getConfig from './config/config';
 import * as mongo from './db/mongodb';
 
 // Good practice to stop processing when an unhandledRejection occurs
