@@ -1,6 +1,7 @@
 {
   "ts-node": {
-    "files": true
+    "transpileOnly": true, /* Use TypeScript's faster transpileModule */
+    "files": true, /* Load files, include and exclude from tsconfig.json on startup */
   },
   "compilerOptions": {
     /* Visit https://aka.ms/tsconfig.json to read more about this file */
