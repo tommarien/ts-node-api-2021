@@ -1,4 +1,5 @@
-import { Collection, ObjectId, MongoClient } from 'mongodb';
+import { Collection, MongoClient } from 'mongodb';
+import { ProductCategory } from './ProductCategory';
 
 let mongoClient: MongoClient | undefined;
 
@@ -6,18 +7,12 @@ export interface Db {
   productCategories: Collection<ProductCategory>;
 }
 
-export interface ProductCategory {
-  _id: ObjectId;
-  name: string;
-  slug: string;
-}
-
 export async function connect(client: MongoClient): Promise<void> {
   mongoClient = client;
   await client.connect();
 }
 
-export function getDb(): Db {
+export function getDb(): Readonly<Db> {
   if (!mongoClient) throw new Error('No Db connected');
 
   const db = mongoClient.db();
