@@ -15,6 +15,7 @@
     "clean": "rimraf .nyc_output dist",
     "lint": "concurrently -n tsc,lint, -c \"cyan.bold,green.bold\" \"tsc --noEmit --pretty\" \"eslint --ext .js,.ts ./\"",
     "migrate": "NODE_OPTIONS='-r dotenv/config' ts-node node_modules/.bin/migrate-mongo",
+    "migrate:test": "MONGO_URI='mongodb://localhost/webshop-node-2021-test' ts-node node_modules/.bin/migrate-mongo",
     "serve": "nodemon -w ./src  --exec ts-node src/main.ts | pino-pretty --translateTime --ignore hostname",
     "test": "tap --ts --test-ignore test"
   },
