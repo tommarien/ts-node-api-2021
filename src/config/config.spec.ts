@@ -6,46 +6,45 @@ beforeEach(() => {
 });
 
 test('it applies the defaults', (t) => {
-  t.plan(1);
   t.same(getConfig(), {
-    isProduction: false,
+    environment: 'local',
     server: { port: '3000' },
     mongo: { uri: 'mongodb://localhost/fake' },
     logger: { level: 'info' },
   });
+
+  t.end();
 });
 
-test('isProduction', (t) => {
-  t.plan(2);
+test('environment', (t) => {
+  const runtimeEnv = 'dev';
 
-  Object.assign(process.env, { NODE_ENV: 'development' });
-  t.hasStrict(getConfig(), { isProduction: false }, 'is false when NODE_ENV is development');
+  Object.assign(process.env, { RUNTIME_ENV: runtimeEnv });
 
-  Object.assign(process.env, { NODE_ENV: 'production' });
-  t.hasStrict(getConfig(), { isProduction: true }, 'is true when NODE_ENV is production');
+  t.hasStrict(getConfig(), { environment: runtimeEnv }, 'environment is set as configured');
+
+  t.end();
 });
 
 test('server', (t) => {
-  t.plan(1);
-
   const configuredPort = '4000';
   Object.assign(process.env, { PORT: configuredPort });
 
   t.hasStrict(getConfig(), { server: { port: configuredPort } }, 'port is set as configured');
+
+  t.end();
 });
 
 test('mongo', (t) => {
-  t.plan(1);
-
   const configuredUri = 'mongodb://localhost/db';
   Object.assign(process.env, { MONGO_URI: configuredUri });
 
   t.hasStrict(getConfig(), { mongo: { uri: configuredUri } }, 'uri is set as configured');
+
+  t.end();
 });
 
 test('logger', (t) => {
-  t.plan(2);
-
   const configuredLevel = 'warn';
   Object.assign(process.env, { LOG_LEVEL: configuredLevel });
 
@@ -55,4 +54,6 @@ test('logger', (t) => {
   Object.assign(process.env, { LOG_LEVEL: unknownLevel });
 
   t.throws(getConfig, 'throws when invalid');
+
+  t.end();
 });

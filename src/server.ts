@@ -15,7 +15,7 @@ export default function createServer(config: Config): ReturnType<typeof fastify>
     logger: { level: config.logger.level },
   });
 
-  if (!config.isProduction) {
+  if (config.environment !== 'pro') {
     server.register(swagger, {
       routePrefix: '/docs',
       exposeRoute: true,
