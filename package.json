@@ -46,6 +46,9 @@
   "dependencies": {
     "env-schema": "^3.3.0",
     "fastify": "^3.20.2",
+    "fastify-autoload": "^3.8.0",
+    "fastify-plugin": "^3.0.0",
+    "fastify-swagger": "^4.9.0",
     "fluent-json-schema": "^3.0.1",
     "migrate-mongo": "^8.2.3",
     "mongodb": "^4.1.0"

@@ -13,11 +13,8 @@
   },
   "rules": {
     "import/prefer-default-export": "off",
-    "import/extensions": [
-      "error",
-      "never"
-    ],
     "no-plusplus": "off",
+    "no-underscore-dangle": "off",
     "no-restricted-syntax": [ // Removed ForOfStatement
       "error",
       {
