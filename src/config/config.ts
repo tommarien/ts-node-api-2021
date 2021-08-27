@@ -2,7 +2,7 @@ import envSchema from 'env-schema';
 import Schema from 'fluent-json-schema';
 
 const ALLOWED_LOGLEVELS = ['fatal', 'error', 'warn', 'info', 'debug', 'trace', 'silent'] as const;
-const ENVIRONMENTS = ['local', 'dev', 'sta', 'pro'] as const;
+const ENVIRONMENTS = ['local', 'test', 'dev', 'sta', 'pro'] as const;
 
 const schema = Schema.object()
   .prop('LOG_LEVEL', Schema.string().enum([...ALLOWED_LOGLEVELS]))

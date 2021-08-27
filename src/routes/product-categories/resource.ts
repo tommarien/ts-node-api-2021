@@ -1,3 +1,5 @@
+import Schema from 'fluent-json-schema';
+
 export interface ProductCategoryReply {
   id: string;
   slug: string;
