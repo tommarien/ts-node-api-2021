@@ -1,5 +1,5 @@
 import { Collection, MongoClient } from 'mongodb';
-import { ProductCategory } from './ProductCategory';
+import { ProductCategory } from './product-category';
 
 let mongoClient: MongoClient | undefined;
 
