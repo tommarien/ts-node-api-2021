@@ -1,13 +1,12 @@
-import { FastifyPluginCallback } from 'fastify';
-import fp from 'fastify-plugin';
+import { FastifyPluginAsync } from 'fastify';
 import Schema from 'fluent-json-schema';
 import { Config } from '../../config/config';
 import { getDb } from '../../db/mongodb';
 import { ProductCategoryReply } from './resource';
 
-const productCategories: FastifyPluginCallback<Config> = (server, config, done) => {
+const productCategoryApi: FastifyPluginAsync<Config> = async (server, config) => {
   server.get<{ Reply: ProductCategoryReply[] }>(
-    '/product-categories',
+    '/',
     {
       schema: {
         tags: ['product-category'],
@@ -18,7 +17,7 @@ const productCategories: FastifyPluginCallback<Config> = (server, config, done) 
         },
       },
     },
-    async (req, reply) => {
+    async () => {
       const db = getDb();
 
       const categories = await db.productCategories.find().toArray();
@@ -30,8 +29,6 @@ const productCategories: FastifyPluginCallback<Config> = (server, config, done) 
       }));
     },
   );
-
-  done();
 };
 
-export default fp(productCategories);
+export default productCategoryApi;

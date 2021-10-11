@@ -32,8 +32,7 @@ export default function createServer(config: Config): ReturnType<typeof fastify>
 
   server.register(autoLoad, {
     dir: path.join(__dirname, 'routes'),
-    prefix: 'api',
-    options: config,
+    options: { ...config, prefix: '/api' },
   });
 
   return server;
