@@ -4,7 +4,7 @@ import { Config } from '../../config/config';
 import { getDb } from '../../db/mongodb';
 import { ProductCategoryReply } from './resource';
 
-const productCategoryApi: FastifyPluginAsync<Config> = async (server, config) => {
+const productCategoryApi: FastifyPluginAsync<Config> = async (server) => {
   server.get<{ Reply: ProductCategoryReply[] }>(
     '/',
     {
