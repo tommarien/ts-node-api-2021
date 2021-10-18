@@ -20,7 +20,7 @@ const productCategoryApi: FastifyPluginAsync<Config> = async (server) => {
     async () => {
       const db = getDb();
 
-      const categories = await db.productCategories.find().toArray();
+      const categories = await db.productCategories.find().sort('name').toArray();
 
       return categories.map((category) => ({
         id: category._id.toHexString(),
