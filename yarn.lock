@@ -782,10 +782,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:^14.17.27":
-  version: 14.17.27
-  resolution: "@types/node@npm:14.17.27"
-  checksum: 4f7eeaa329f4b2b9ff4bb0bb4582ad92e328a4e66f62d5b96ac4e3b51210ed092bb56726c30643beb860f6df633a29e08ed94adad2d573c85b4794d0bf0bbc06
+"@types/node@npm:^14.17.32":
+  version: 14.17.32
+  resolution: "@types/node@npm:14.17.32"
+  checksum: c3ec45db5d8ca6ed80bcc2fe3cd9f15c1518d43cf048dd5444d1fcbe308d302a42721cb3f19548ac2e7b8b7db4f7f6cd4bf9ed58ab1d30a0bf61758350edd9d5
   languageName: node
   linkType: hard
 
@@ -837,12 +837,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/sinon@npm:^10.0.4":
-  version: 10.0.4
-  resolution: "@types/sinon@npm:10.0.4"
+"@types/sinon@npm:^10.0.6":
+  version: 10.0.6
+  resolution: "@types/sinon@npm:10.0.6"
   dependencies:
     "@sinonjs/fake-timers": ^7.1.0
-  checksum: 8060328504f82aa4d121cd32256686c197fa36c0ea4bd740620438835b2fd7f95d605da06cd4c10afa86d514ca22e2a118ade80f59089201967506afb4734375
+  checksum: 1c2ae7daa822014a558d513c1ae341aed676bfe678b9e48cf13a0ccc0eabc429f211371e8f10495d5eb156c0aedfeb3ad5253ebfe026fc14a5b77c461a6cea2a
   languageName: node
   linkType: hard
 
@@ -3022,16 +3022,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"fastify-swagger@npm:^4.12.4":
-  version: 4.12.4
-  resolution: "fastify-swagger@npm:4.12.4"
+"fastify-swagger@npm:^4.12.5":
+  version: 4.12.5
+  resolution: "fastify-swagger@npm:4.12.5"
   dependencies:
     fastify-plugin: ^3.0.0
     fastify-static: ^4.0.0
     js-yaml: ^4.0.0
     json-schema-resolver: ^1.3.0
     openapi-types: ^9.1.0
-  checksum: 5d64937fc583d3578fcbd27dea2bb18952b40630e26df898da07ab40a82bd22427edc60e0b65a47d1dd14045bf79ee97ea81e996eb484454248fa48bf866b181
+  checksum: 5ecd80add0ad83ec0bbf255f75caf48c6ba8e5dbeb374741363fbf2a138592715cb76da95d3e81e7fdfb5e080916657754b86ad9f9dc440ec2ad0e92137f7a8b
   languageName: node
   linkType: hard
 
@@ -3042,9 +3042,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"fastify@npm:^3.22.0":
-  version: 3.22.0
-  resolution: "fastify@npm:3.22.0"
+"fastify@npm:^3.22.1":
+  version: 3.22.1
+  resolution: "fastify@npm:3.22.1"
   dependencies:
     "@fastify/ajv-compiler": ^1.0.0
     abstract-logging: ^2.0.0
@@ -3057,12 +3057,11 @@ __metadata:
     light-my-request: ^4.2.0
     pino: ^6.13.0
     proxy-addr: ^2.0.7
-    readable-stream: ^3.4.0
     rfdc: ^1.1.4
     secure-json-parse: ^2.0.0
     semver: ^7.3.2
     tiny-lru: ^7.0.0
-  checksum: 4f06ccb4b75df5748d8683b11050920439db642a6fecf508d0e6aa58cefd874a4d9ef76e3ec29a9e87a06c373c4d1adfa0d92c092f793d1bbfd9f3207e2c1c6a
+  checksum: 057f29045629250923b962c5fbd421811378ef32c497bc02bb1c0a75294f43ca73e7041262a306b7c1d6bf243d2096d63cc4192aaa6c9053efcd4557e225d470
   languageName: node
   linkType: hard
 
@@ -5154,9 +5153,9 @@ fsevents@~2.3.2:
   languageName: node
   linkType: hard
 
-"nodemon@npm:^2.0.13":
-  version: 2.0.13
-  resolution: "nodemon@npm:2.0.13"
+"nodemon@npm:^2.0.14":
+  version: 2.0.14
+  resolution: "nodemon@npm:2.0.14"
   dependencies:
     chokidar: ^3.2.2
     debug: ^3.2.6
@@ -5170,7 +5169,7 @@ fsevents@~2.3.2:
     update-notifier: ^5.1.0
   bin:
     nodemon: bin/nodemon.js
-  checksum: 36a73798a21c5151f1190bab0d9ccce18e11304eed340d669f1c5c6fdf4f51c80203af4ff1531f129d602784c2dec0297ed801b0cb68f70a5845e7f473ace418
+  checksum: 0fd6b03b0b86417e8208dee0d6f8130aef1a85d26e64f2f6f046163fa12b430f0dc12a9d78ccf7a76de69e485f24fa1caa6cc15f233e571335d4a3f198a55bbe
   languageName: node
   linkType: hard
 
@@ -7222,8 +7221,8 @@ fsevents@~2.3.2:
   dependencies:
     "@commitlint/cli": ^13.2.1
     "@commitlint/config-conventional": ^13.2.0
-    "@types/node": ^14.17.27
-    "@types/sinon": ^10.0.4
+    "@types/node": ^14.17.32
+    "@types/sinon": ^10.0.6
     "@types/tap": ^15.0.5
     "@typescript-eslint/eslint-plugin": ^4.33.0
     "@typescript-eslint/parser": ^4.33.0
@@ -7235,26 +7234,26 @@ fsevents@~2.3.2:
     eslint-config-airbnb-typescript: ^14.0.1
     eslint-config-prettier: ^8.3.0
     eslint-plugin-import: ^2.25.2
-    fastify: ^3.22.0
+    fastify: ^3.22.1
     fastify-autoload: ^3.9.0
-    fastify-swagger: ^4.12.4
+    fastify-swagger: ^4.12.5
     fluent-json-schema: ^3.0.1
     migrate-mongo: ^8.2.3
     mongodb: ^4.1.3
-    nodemon: ^2.0.13
+    nodemon: ^2.0.14
     pino-pretty: ^7.1.0
     prettier: ^2.4.1
     rimraf: ^3.0.2
     sinon: ^11.1.2
     tap: ^15.0.10
-    ts-node: ^10.3.0
+    ts-node: ^10.4.0
     typescript: ^4.4.4
   languageName: unknown
   linkType: soft
 
-"ts-node@npm:^10.3.0":
-  version: 10.3.0
-  resolution: "ts-node@npm:10.3.0"
+"ts-node@npm:^10.4.0":
+  version: 10.4.0
+  resolution: "ts-node@npm:10.4.0"
   dependencies:
     "@cspotcode/source-map-support": 0.7.0
     "@tsconfig/node10": ^1.0.7
@@ -7284,7 +7283,7 @@ fsevents@~2.3.2:
     ts-node-script: dist/bin-script.js
     ts-node-transpile-only: dist/bin-transpile.js
     ts-script: dist/bin-script-deprecated.js
-  checksum: aea1b9eac4d4c735c453a0e7efef6fd76c7b59db3be158eabe21abad9d35209d243b210a9a5ef39742ffbda542250c2e771fa387e3b4829e8cb699e82f3820c4
+  checksum: 3933ac0a937d33c45e04a6750fcdd3e765eb2897d1da1307cd97ac52af093bcfb632ec0453a75000a65c8b5b7bdb32b1077050a186dcc556e62657cb592e6d49
   languageName: node
   linkType: hard
 
