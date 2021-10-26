@@ -2,7 +2,7 @@ import { FastifyPluginAsync } from 'fastify';
 import Schema from 'fluent-json-schema';
 import { Config } from '../../config/config';
 import { getDb } from '../../db/mongodb';
-import { ProductCategoryReply } from './resource';
+import { ProductCategoryReply, productCategoryReplySchema } from './resource';
 
 const productCategoryApi: FastifyPluginAsync<Config> = async (server) => {
   server.get<{ Reply: ProductCategoryReply[] }>(
@@ -11,9 +11,7 @@ const productCategoryApi: FastifyPluginAsync<Config> = async (server) => {
       schema: {
         tags: ['product-category'],
         response: {
-          200: Schema.array().items(
-            Schema.object().prop('id', Schema.string()).prop('slug', Schema.string()).prop('name', Schema.string()),
-          ),
+          200: Schema.array().items(productCategoryReplySchema),
         },
       },
     },
