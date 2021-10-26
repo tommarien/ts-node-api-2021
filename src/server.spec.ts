@@ -1,9 +1,9 @@
-import tap from 'tap';
-import sinon from 'sinon';
+import avaTest, { TestInterface } from 'ava';
+import sinon, { SinonSandbox } from 'sinon';
 import crypto from 'crypto';
 import { buildTestServer } from '../test/server';
 
-tap.afterEach(() => sinon.restore);
+const test = avaTest as TestInterface<{ sandbox: SinonSandbox }>;
 
 async function setupServer() {
   const server = buildTestServer();
@@ -19,9 +19,16 @@ async function setupServer() {
   return server;
 }
 
-tap.test('it echoes the value of the x-request-id header', async (t) => {
-  t.plan(2);
+test.beforeEach((t) => {
+  // eslint-disable-next-line no-param-reassign
+  t.context.sandbox = sinon.createSandbox();
+});
 
+test.afterEach((t) => {
+  t.context.sandbox.restore();
+});
+
+test('it echoes the value of the x-request-id header', async (t) => {
   const server = await setupServer();
 
   const reqId = 'cf03dfbf-ad44-4d24-b1b3-6a044bdbf570';
@@ -34,14 +41,14 @@ tap.test('it echoes the value of the x-request-id header', async (t) => {
     },
   });
 
-  t.equal(response.statusCode, 200);
-  t.same(response.json(), { reqId });
+  t.is(response.statusCode, 200);
+  t.like(response.json(), { reqId });
 });
 
-tap.test('it creates a new request id using randomUUID', async (t) => {
+test('it creates a new request id using randomUUID', async (t) => {
   const reqId = 'request-id';
 
-  const randomUUIDStub = sinon.stub(crypto, 'randomUUID').returns(reqId);
+  const randomUUIDStub = t.context.sandbox.stub(crypto, 'randomUUID').returns(reqId);
 
   const server = await setupServer();
 
@@ -50,8 +57,7 @@ tap.test('it creates a new request id using randomUUID', async (t) => {
     url: '/echo-request-id',
   });
 
-  t.plan(3);
-  t.equal(response.statusCode, 200);
-  t.same(response.json(), { reqId });
-  t.ok(randomUUIDStub.called);
+  t.is(response.statusCode, 200);
+  t.like(response.json(), { reqId });
+  t.true(randomUUIDStub.called);
 });

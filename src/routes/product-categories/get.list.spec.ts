@@ -1,10 +1,10 @@
 import { MongoClient } from 'mongodb';
-import { test, before, teardown } from 'tap';
+import test from 'ava';
 import * as db from '../../db/mongodb';
 import { buildTestServer } from '../../../test/server';
 import { productCategories } from '../../../test/generators';
 
-before(async () => {
+test.serial.before(async () => {
   await db.connect(new MongoClient('mongodb://localhost/webshop-node-2021-test'));
   await db.getDb().productCategories.deleteMany({});
   await db
@@ -16,9 +16,9 @@ before(async () => {
     ]);
 });
 
-teardown(() => db.disconnect());
+test.serial.after(() => db.disconnect());
 
-test('it returns the categories', async (t) => {
+test.serial('it returns the categories', async (t) => {
   const server = buildTestServer();
 
   const response = await server.inject({
@@ -26,8 +26,8 @@ test('it returns the categories', async (t) => {
     url: '/api/product-categories',
   });
 
-  t.equal(response.statusCode, 200);
-  t.same(
+  t.is(response.statusCode, 200);
+  t.deepEqual(
     response.json(),
     [
       productCategories.cellPhoneAndAccessories(),
@@ -35,6 +35,4 @@ test('it returns the categories', async (t) => {
       productCategories.televisionAndVideo(),
     ].map((x) => ({ id: x._id.toHexString(), slug: x.slug, name: x.name })),
   );
-
-  t.end();
 });

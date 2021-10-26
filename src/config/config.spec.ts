@@ -1,59 +1,49 @@
-import { test, beforeEach } from 'tap';
+import test from 'ava';
 import getConfig from './config';
 
-beforeEach(() => {
+test.beforeEach(() => {
   Object.assign(process.env, { MONGO_URI: 'mongodb://localhost/fake' });
 });
 
-test('it applies the defaults', (t) => {
-  t.same(getConfig(), {
+test('applies the defaults', (t) => {
+  t.deepEqual(getConfig(), {
     environment: 'local',
     server: { port: '3000' },
     mongo: { uri: 'mongodb://localhost/fake' },
     logger: { level: 'info' },
   });
-
-  t.end();
 });
 
-test('environment', (t) => {
+test('configures the environment', (t) => {
   const runtimeEnv = 'dev';
 
   Object.assign(process.env, { RUNTIME_ENV: runtimeEnv });
 
-  t.hasStrict(getConfig(), { environment: runtimeEnv }, 'environment is set as configured');
-
-  t.end();
+  t.like(getConfig(), { environment: runtimeEnv }, 'environment is set as configured');
 });
 
-test('server', (t) => {
+test('configures the server', (t) => {
   const configuredPort = '4000';
   Object.assign(process.env, { PORT: configuredPort });
 
-  t.hasStrict(getConfig(), { server: { port: configuredPort } }, 'port is set as configured');
-
-  t.end();
+  t.like(getConfig(), { server: { port: configuredPort } }, 'port is set as configured');
 });
 
-test('mongo', (t) => {
+test('it configures our mongo', (t) => {
   const configuredUri = 'mongodb://localhost/db';
   Object.assign(process.env, { MONGO_URI: configuredUri });
 
-  t.hasStrict(getConfig(), { mongo: { uri: configuredUri } }, 'uri is set as configured');
-
-  t.end();
+  t.like(getConfig(), { mongo: { uri: configuredUri } }, 'uri is set as configured');
 });
 
-test('logger', (t) => {
+test('it configures our logger', (t) => {
   const configuredLevel = 'warn';
   Object.assign(process.env, { LOG_LEVEL: configuredLevel });
 
-  t.hasStrict(getConfig(), { logger: { level: configuredLevel } }, 'level is set as configured');
+  t.like(getConfig(), { logger: { level: configuredLevel } }, 'level is set as configured');
 
   const unknownLevel = 'darn';
   Object.assign(process.env, { LOG_LEVEL: unknownLevel });
 
-  t.throws(getConfig, 'throws when invalid');
-
-  t.end();
+  t.throws(getConfig, undefined, 'throws when invalid');
 });
