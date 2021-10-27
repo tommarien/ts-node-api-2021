@@ -1,8 +1,22 @@
 import { FastifyPluginAsync } from 'fastify';
+import {} from 'fastify-sensible';
 import Schema from 'fluent-json-schema';
+import { MongoServerError } from 'mongodb';
 import { Config } from '../../config/config';
 import { getDb } from '../../db/mongodb';
-import { ProductCategoryReply, productCategoryReplySchema } from './resource';
+import { ProductCategory } from '../../db/product-category';
+import {
+  ProductCategoryBody,
+  productCategoryBodySchema,
+  ProductCategoryReply,
+  productCategoryReplySchema,
+} from './resource';
+
+const mapToReply = (category: ProductCategory) => ({
+  id: category._id.toHexString(),
+  slug: category.slug,
+  name: category.name,
+});
 
 const productCategoryApi: FastifyPluginAsync<Config> = async (server) => {
   server.get<{ Reply: ProductCategoryReply[] }>(
@@ -18,13 +32,42 @@ const productCategoryApi: FastifyPluginAsync<Config> = async (server) => {
     async () => {
       const db = getDb();
 
-      const categories = await db.productCategories.find().sort('name').toArray();
+      const categories = await db.productCategories
+        .find()
+        .sort('name')
+        .toArray();
 
-      return categories.map((category) => ({
-        id: category._id.toHexString(),
-        slug: category.slug,
-        name: category.name,
-      }));
+      return categories.map(mapToReply);
+    },
+  );
+
+  server.post<{ Body: ProductCategoryBody; Reply: ProductCategoryReply }>(
+    '/',
+    {
+      schema: {
+        body: productCategoryBodySchema,
+      },
+    },
+    async (req) => {
+      const db = getDb();
+
+      try {
+        const { insertedId } = await db.productCategories.insertOne(req.body);
+
+        return {
+          id: insertedId.toHexString(),
+          slug: req.body.slug,
+          name: req.body.name,
+        };
+      } catch (e) {
+        if (e instanceof MongoServerError && e.code === 11000) {
+          throw server.httpErrors.conflict(
+            `A productCategory with slug '${req.body.slug}' already exists`,
+          );
+        }
+
+        throw e;
+      }
     },
   );
 };

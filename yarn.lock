@@ -2531,6 +2531,20 @@ __metadata:
   languageName: node
   linkType: hard
 
+"fastify-sensible@npm:^3.1.1":
+  version: 3.1.1
+  resolution: "fastify-sensible@npm:3.1.1"
+  dependencies:
+    fast-deep-equal: ^3.1.1
+    fastify-plugin: ^3.0.0
+    forwarded: ^0.1.2
+    http-errors: ^1.7.3
+    type-is: ^1.6.18
+    vary: ^1.1.2
+  checksum: 64decb57ffff31d1cfe266204acaca65540d2f5678f4017dc862f178c01f31def2e80b76e81422f810ab3de19e50d0f1a6b90fa10633a55024eeafd53c6cf51e
+  languageName: node
+  linkType: hard
+
 "fastify-static@npm:^4.0.0":
   version: 4.2.3
   resolution: "fastify-static@npm:4.2.3"
@@ -2718,6 +2732,13 @@ __metadata:
   version: 0.2.0
   resolution: "forwarded@npm:0.2.0"
   checksum: fd27e2394d8887ebd16a66ffc889dc983fbbd797d5d3f01087c020283c0f019a7d05ee85669383d8e0d216b116d720fc0cef2f6e9b7eb9f4c90c6e0bc7fd28e6
+  languageName: node
+  linkType: hard
+
+"forwarded@npm:^0.1.2":
+  version: 0.1.2
+  resolution: "forwarded@npm:0.1.2"
+  checksum: 54695c574292f9bc6bfa52111844337bc2e61cfcc5ec82f16b816d721a67a0c76b4849a34b57e38e51d64ddbb81aef974f393579f610ed1b990470e75abad2e0
   languageName: node
   linkType: hard
 
@@ -3048,6 +3069,19 @@ fsevents@~2.3.2:
   version: 4.1.0
   resolution: "http-cache-semantics@npm:4.1.0"
   checksum: 974de94a81c5474be07f269f9fd8383e92ebb5a448208223bfb39e172a9dbc26feff250192ecc23b9593b3f92098e010406b0f24bd4d588d631f80214648ed42
+  languageName: node
+  linkType: hard
+
+"http-errors@npm:^1.7.3":
+  version: 1.8.0
+  resolution: "http-errors@npm:1.8.0"
+  dependencies:
+    depd: ~1.1.2
+    inherits: 2.0.4
+    setprototypeof: 1.2.0
+    statuses: ">= 1.5.0 < 2"
+    toidentifier: 1.0.0
+  checksum: 873d997bada0340b31cc69cbe8376e47ee142f60375b81447fa3ad7be512dd4026afb3b46ed2257ee59472d43782a34151994b34264b204bcaad02e67ad836cb
   languageName: node
   linkType: hard
 
@@ -3987,6 +4021,13 @@ fsevents@~2.3.2:
   languageName: node
   linkType: hard
 
+"media-typer@npm:0.3.0":
+  version: 0.3.0
+  resolution: "media-typer@npm:0.3.0"
+  checksum: af1b38516c28ec95d6b0826f6c8f276c58aec391f76be42aa07646b4e39d317723e869700933ca6995b056db4b09a78c92d5440dc23657e6764be5d28874bba1
+  languageName: node
+  linkType: hard
+
 "mem@npm:^8.0.0":
   version: 8.1.1
   resolution: "mem@npm:8.1.1"
@@ -4062,6 +4103,22 @@ fsevents@~2.3.2:
   bin:
     migrate-mongo: bin/migrate-mongo.js
   checksum: b394ad96aaf50b12e493c3c29108775bb6f87f10058d82acfab5f1ddb4803ed1d9a399d74e5f0f9ac3a6da4cb17b1fd25871d6e8fa5946ca5a58fb6fc4f6d71b
+  languageName: node
+  linkType: hard
+
+"mime-db@npm:1.50.0":
+  version: 1.50.0
+  resolution: "mime-db@npm:1.50.0"
+  checksum: 95fcc19c3664ae72391c8a7e4015dde7fb6817c98c951493ca3a1d48050feb8ee08810a372ce7d9e16310042d26e5bda168916f600583a9a583655eeea8ff5f5
+  languageName: node
+  linkType: hard
+
+"mime-types@npm:~2.1.24":
+  version: 2.1.33
+  resolution: "mime-types@npm:2.1.33"
+  dependencies:
+    mime-db: 1.50.0
+  checksum: 05f2a0b3f169fbc51d79bdc7674ceb379dd07dbeadb0143059a7def865224686ee9f9051aeb340e98b6c11dbc06794ce0122181db4312cb1ad054fd90b0d510e
   languageName: node
   linkType: hard
 
@@ -5441,6 +5498,13 @@ fsevents@~2.3.2:
   languageName: node
   linkType: hard
 
+"setprototypeof@npm:1.2.0":
+  version: 1.2.0
+  resolution: "setprototypeof@npm:1.2.0"
+  checksum: be18cbbf70e7d8097c97f713a2e76edf84e87299b40d085c6bf8b65314e994cc15e2e317727342fa6996e38e1f52c59720b53fe621e2eb593a6847bf0356db89
+  languageName: node
+  linkType: hard
+
 "shebang-command@npm:^2.0.0":
   version: 2.0.0
   resolution: "shebang-command@npm:2.0.0"
@@ -6067,6 +6131,7 @@ fsevents@~2.3.2:
     eslint-plugin-import: ^2.25.2
     fastify: ^3.22.1
     fastify-autoload: ^3.9.0
+    fastify-sensible: ^3.1.1
     fastify-swagger: ^4.12.6
     fluent-json-schema: ^3.0.1
     migrate-mongo: ^8.2.3
@@ -6230,6 +6295,16 @@ fsevents@~2.3.2:
   version: 0.8.1
   resolution: "type-fest@npm:0.8.1"
   checksum: d61c4b2eba24009033ae4500d7d818a94fd6d1b481a8111612ee141400d5f1db46f199c014766b9fa9b31a6a7374d96fc748c6d688a78a3ce5a33123839becb7
+  languageName: node
+  linkType: hard
+
+"type-is@npm:^1.6.18":
+  version: 1.6.18
+  resolution: "type-is@npm:1.6.18"
+  dependencies:
+    media-typer: 0.3.0
+    mime-types: ~2.1.24
+  checksum: 2c8e47675d55f8b4e404bcf529abdf5036c537a04c2b20177bcf78c9e3c1da69da3942b1346e6edb09e823228c0ee656ef0e033765ec39a70d496ef601a0c657
   languageName: node
   linkType: hard
 
@@ -6398,6 +6473,13 @@ typescript@^4.4.4:
     spdx-correct: ^3.0.0
     spdx-expression-parse: ^3.0.0
   checksum: 35703ac889d419cf2aceef63daeadbe4e77227c39ab6287eeb6c1b36a746b364f50ba22e88591f5d017bc54685d8137bc2d328d0a896e4d3fd22093c0f32a9ad
+  languageName: node
+  linkType: hard
+
+"vary@npm:^1.1.2":
+  version: 1.1.2
+  resolution: "vary@npm:1.1.2"
+  checksum: ae0123222c6df65b437669d63dfa8c36cee20a504101b2fcd97b8bf76f91259c17f9f2b4d70a1e3c6bbcee7f51b28392833adb6b2770b23b01abec84e369660b
   languageName: node
   linkType: hard
 

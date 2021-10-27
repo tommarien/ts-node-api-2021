@@ -4,9 +4,11 @@ import * as db from '../../db/mongodb';
 import { buildTestServer } from '../../../test/server';
 import { productCategories } from '../../../test/generators';
 
-test.serial.before(async () => {
-  await db.connect(new MongoClient('mongodb://localhost/webshop-node-2021-test'));
-  await db.getDb().productCategories.deleteMany({});
+test.before(async () => {
+  await db.connect(
+    new MongoClient('mongodb://localhost/webshop-node-2021-test'),
+  );
+
   await db
     .getDb()
     .productCategories.insertMany([
@@ -16,7 +18,10 @@ test.serial.before(async () => {
     ]);
 });
 
-test.serial.after(() => db.disconnect());
+test.after.always(async () => {
+  await db.getDb().productCategories.deleteMany({});
+  await db.disconnect();
+});
 
 test.serial('it returns the categories', async (t) => {
   const server = buildTestServer();

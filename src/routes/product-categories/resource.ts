@@ -1,12 +1,13 @@
 import Schema from 'fluent-json-schema';
 
-export interface ProductCategoryReply {
-  id: string;
+export interface ProductCategoryBody {
   slug: string;
   name: string;
 }
 
-export const productCategoryReplySchema = Schema.object()
-  .prop('id', Schema.string())
-  .prop('slug', Schema.string())
-  .prop('name', Schema.string());
+export interface ProductCategoryReply extends ProductCategoryBody {
+  id: string;
+}
+
+export const productCategoryBodySchema = Schema.object().prop('slug', Schema.string()).prop('name', Schema.string());
+export const productCategoryReplySchema = Schema.object().prop('id', Schema.string()).extend(productCategoryBodySchema);
