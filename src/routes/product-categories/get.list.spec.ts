@@ -23,7 +23,7 @@ test.after.always(async () => {
   await db.disconnect();
 });
 
-test.serial('it returns the categories', async (t) => {
+test.serial('returns the categories', async (t) => {
   const server = buildTestServer();
 
   const response = await server.inject({

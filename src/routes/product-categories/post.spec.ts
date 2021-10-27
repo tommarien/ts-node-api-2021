@@ -32,7 +32,7 @@ test.afterEach.always(async () => {
 test.after(db.disconnect);
 
 test.serial(
-  'it creates a new productCategory if payload is valid',
+  'creates a new productCategory if payload is valid',
   async (t) => {
     const payload = buildValidProductCategoryPayload();
 
@@ -60,7 +60,7 @@ test.serial(
   },
 );
 
-test.serial('it returns conflict (409) if slug is not unique', async (t) => {
+test.serial('returns conflict (409) if slug is not unique', async (t) => {
   await db
     .getDb()
     .productCategories.insertOne(buildValidProductCategoryPayload());

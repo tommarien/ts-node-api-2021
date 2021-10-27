@@ -29,14 +29,14 @@ test('configures the server', (t) => {
   t.like(getConfig(), { server: { port: configuredPort } }, 'port is set as configured');
 });
 
-test('it configures our mongo', (t) => {
+test('configures our mongo', (t) => {
   const configuredUri = 'mongodb://localhost/db';
   Object.assign(process.env, { MONGO_URI: configuredUri });
 
   t.like(getConfig(), { mongo: { uri: configuredUri } }, 'uri is set as configured');
 });
 
-test('it configures our logger', (t) => {
+test('configures our logger', (t) => {
   const configuredLevel = 'warn';
   Object.assign(process.env, { LOG_LEVEL: configuredLevel });
 
