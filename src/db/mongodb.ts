@@ -8,6 +8,7 @@ export interface Db {
 }
 
 export async function connect(client: MongoClient): Promise<void> {
+  if (mongoClient) return;
   mongoClient = client;
   await client.connect();
 }
@@ -24,6 +25,6 @@ export function getDb(): Readonly<Db> {
 
 export async function disconnect(): Promise<void> {
   if (!mongoClient) return;
-
   await mongoClient.close();
+  mongoClient = undefined;
 }

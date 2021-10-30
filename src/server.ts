@@ -36,6 +36,11 @@ export default function createServer(
   }
 
   server.register(autoLoad, {
+    dir: path.join(__dirname, 'plugins'),
+    options: config,
+  });
+
+  server.register(autoLoad, {
     dir: path.join(__dirname, 'routes'),
     options: { ...config, prefix: '/api' },
   });

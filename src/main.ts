@@ -1,7 +1,5 @@
-import { MongoClient } from 'mongodb';
 import createServer from './server';
 import getConfig from './config/config';
-import * as mongo from './db/mongodb';
 
 // Good practice to stop processing when an unhandledRejection occurs
 process.on('unhandledRejection', (err) => {
@@ -15,7 +13,6 @@ async function main() {
 
   const server = createServer(config);
 
-  await mongo.connect(new MongoClient(config.mongo.uri));
   await server.listen(config.server.port);
 
   const signals: NodeJS.Signals[] = ['SIGINT', 'SIGTERM'];
@@ -26,7 +23,6 @@ async function main() {
 
       server
         .close()
-        .then(mongo.disconnect)
         .then(
           () => {
             server.log.info({ signal }, 'application closed');

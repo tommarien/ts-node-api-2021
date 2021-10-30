@@ -1,9 +1,7 @@
 import { FastifyPluginAsync } from 'fastify';
-import {} from 'fastify-sensible';
 import Schema from 'fluent-json-schema';
 import { MongoServerError } from 'mongodb';
 import { Config } from '../../config/config';
-import { getDb } from '../../db/mongodb';
 import { ProductCategory } from '../../db/product-category';
 import {
   ProductCategoryBody,
@@ -29,10 +27,8 @@ const productCategoryApi: FastifyPluginAsync<Config> = async (server) => {
         },
       },
     },
-    async () => {
-      const db = getDb();
-
-      const categories = await db.productCategories
+    async function listProductCategories() {
+      const categories = await this.mongo.db.productCategories
         .find()
         .sort('name')
         .toArray();
@@ -48,11 +44,9 @@ const productCategoryApi: FastifyPluginAsync<Config> = async (server) => {
         body: productCategoryBodySchema,
       },
     },
-    async (req) => {
-      const db = getDb();
-
+    async function postProductCategory(req) {
       try {
-        const { insertedId } = await db.productCategories.insertOne(req.body);
+        const { insertedId } = await this.mongo.db.productCategories.insertOne(req.body);
 
         return {
           id: insertedId.toHexString(),
