@@ -3,7 +3,7 @@ import { ProductCategory } from '../../src/db/product-category';
 
 export const televisionAndVideo = (): ProductCategory => ({
   _id: new ObjectId('616d650d668541a6dd611e51'),
-  slug: 'television_and_video',
+  slug: 'television-and-video',
   name: 'Television & Video'
 });
 
@@ -15,6 +15,6 @@ export const computerMonitors = (): ProductCategory => ({
 
 export const cellPhoneAndAccessories = (): ProductCategory => ({
   _id: new ObjectId('616d66496b25c95d6c0a64af'),
-  slug: 'cell_phones_and_accessories',
+  slug: 'cell-phones-and-accessories',
   name: 'Cell Phones & Accessories'
 });

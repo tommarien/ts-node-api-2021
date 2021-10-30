@@ -41,12 +41,20 @@ const productCategoryApi: FastifyPluginAsync<Config> = async (server) => {
     '/',
     {
       schema: {
+        tags: ['product-category'],
         body: productCategoryBodySchema,
+        response: {
+          200: productCategoryReplySchema,
+          400: Schema.ref('badRequest').description('Bad Request'),
+          409: Schema.ref('conflict').description('Conflict'),
+        },
       },
     },
     async function postProductCategory(req) {
       try {
-        const { insertedId } = await this.mongo.db.productCategories.insertOne(req.body);
+        const { insertedId } = await this.mongo.db.productCategories.insertOne(
+          req.body,
+        );
 
         return {
           id: insertedId.toHexString(),

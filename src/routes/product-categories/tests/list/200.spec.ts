@@ -1,8 +1,8 @@
 import { MongoClient } from 'mongodb';
 import test from 'ava';
-import * as db from '../../db/mongodb';
-import { buildTestServer } from '../../../test/server';
-import { productCategories } from '../../../test/generators';
+import * as db from '../../../../db/mongodb';
+import { buildTestServer } from '../../../../../test/server';
+import { productCategories } from '../../../../../test/generators';
 
 test.before(async () => {
   await db.connect(

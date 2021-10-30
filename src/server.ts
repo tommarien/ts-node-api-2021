@@ -1,8 +1,9 @@
+import Ajv from 'ajv';
 import { randomUUID } from 'crypto';
 import fastify from 'fastify';
 import autoLoad from 'fastify-autoload';
-import swagger from 'fastify-swagger';
 import sensible from 'fastify-sensible';
+import swagger from 'fastify-swagger';
 import path from 'path';
 import { version } from '../package.json';
 import { Config } from './config/config';
@@ -16,6 +17,13 @@ export default function createServer(
     trustProxy: true,
     disableRequestLogging: true,
     logger: { level: config.logger.level },
+    ajv: {
+      plugins: [
+        (ajv: Ajv) => {
+          ajv.addFormat('slug', /^[a-z0-9]+(?:-[a-z0-9]+)*$/);
+        },
+      ],
+    },
   });
 
   server.register(sensible);
@@ -42,6 +50,7 @@ export default function createServer(
 
   server.register(autoLoad, {
     dir: path.join(__dirname, 'routes'),
+    ignorePattern: /.*(test|spec).ts/,
     options: { ...config, prefix: '/api' },
   });
 
