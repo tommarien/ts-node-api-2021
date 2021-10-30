@@ -3,9 +3,7 @@ import { randomUUID } from 'crypto';
 import fastify from 'fastify';
 import autoLoad from 'fastify-autoload';
 import sensible from 'fastify-sensible';
-import swagger from 'fastify-swagger';
 import path from 'path';
-import { version } from '../package.json';
 import { Config } from './config/config';
 
 export default function createServer(
@@ -27,21 +25,6 @@ export default function createServer(
   });
 
   server.register(sensible);
-
-  if (config.environment !== 'pro') {
-    server.register(swagger, {
-      routePrefix: '/docs',
-      exposeRoute: true,
-      swagger: {
-        info: {
-          title: 'WebShop Demo API',
-          description: 'An api build with fastify',
-          version,
-        },
-        tags: [{ name: 'product-category', description: 'Product Category' }],
-      },
-    });
-  }
 
   server.register(autoLoad, {
     dir: path.join(__dirname, 'plugins'),

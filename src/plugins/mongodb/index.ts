@@ -10,7 +10,7 @@ export interface FastifyMongo {
   ObjectId: typeof ObjectId;
 }
 
-const mongodb: FastifyPluginAsync<Config> = async (server, config) => {
+const mongodb: FastifyPluginAsync<Config> = async (instance, config) => {
   const client = new MongoClient(config.mongo.uri);
   await connect(client);
 
@@ -20,8 +20,8 @@ const mongodb: FastifyPluginAsync<Config> = async (server, config) => {
     ObjectId,
   };
 
-  server.decorate('mongo', mongo);
-  server.addHook('onClose', () => disconnect());
+  instance.decorate('mongo', mongo);
+  instance.addHook('onClose', () => disconnect());
 };
 
 export default fp(mongodb);

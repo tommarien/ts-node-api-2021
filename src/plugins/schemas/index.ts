@@ -19,9 +19,9 @@ const conflictSchema = Schema.object()
 .default([{ statusCode: 409, error: 'Conflict' }])
 .extend(errorReponseSchema);
 
-const commonSchemasPlugin: FastifyPluginCallback = (server, opts, done) => {
-  server.addSchema(badRequestSchema.valueOf());
-  server.addSchema(conflictSchema.valueOf());
+const commonSchemasPlugin: FastifyPluginCallback = (instance, _opts, done) => {
+  instance.addSchema(badRequestSchema.valueOf());
+  instance.addSchema(conflictSchema.valueOf());
 
   done();
 };
