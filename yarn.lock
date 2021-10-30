@@ -2531,17 +2531,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"fastify-sensible@npm:^3.1.1":
-  version: 3.1.1
-  resolution: "fastify-sensible@npm:3.1.1"
+"fastify-sensible@npm:^3.1.2":
+  version: 3.1.2
+  resolution: "fastify-sensible@npm:3.1.2"
   dependencies:
     fast-deep-equal: ^3.1.1
     fastify-plugin: ^3.0.0
-    forwarded: ^0.1.2
+    forwarded: ^0.2.0
     http-errors: ^1.7.3
     type-is: ^1.6.18
     vary: ^1.1.2
-  checksum: 64decb57ffff31d1cfe266204acaca65540d2f5678f4017dc862f178c01f31def2e80b76e81422f810ab3de19e50d0f1a6b90fa10633a55024eeafd53c6cf51e
+  checksum: 160a3526c0f93ab8a0aee2a5c9dbdc29896f40fea14a7b467794583f7e159d6d4aa31fdca9a6e30bf294cad149c7121b05a124b42deaddcf437570661e89538f
   languageName: node
   linkType: hard
 
@@ -2728,17 +2728,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"forwarded@npm:0.2.0":
+"forwarded@npm:0.2.0, forwarded@npm:^0.2.0":
   version: 0.2.0
   resolution: "forwarded@npm:0.2.0"
   checksum: fd27e2394d8887ebd16a66ffc889dc983fbbd797d5d3f01087c020283c0f019a7d05ee85669383d8e0d216b116d720fc0cef2f6e9b7eb9f4c90c6e0bc7fd28e6
-  languageName: node
-  linkType: hard
-
-"forwarded@npm:^0.1.2":
-  version: 0.1.2
-  resolution: "forwarded@npm:0.1.2"
-  checksum: 54695c574292f9bc6bfa52111844337bc2e61cfcc5ec82f16b816d721a67a0c76b4849a34b57e38e51d64ddbb81aef974f393579f610ed1b990470e75abad2e0
   languageName: node
   linkType: hard
 
@@ -6131,7 +6124,7 @@ fsevents@~2.3.2:
     eslint-plugin-import: ^2.25.2
     fastify: ^3.22.1
     fastify-autoload: ^3.9.0
-    fastify-sensible: ^3.1.1
+    fastify-sensible: ^3.1.2
     fastify-swagger: ^4.12.6
     fluent-json-schema: ^3.0.1
     migrate-mongo: ^8.2.3
