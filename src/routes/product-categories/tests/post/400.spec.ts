@@ -10,7 +10,7 @@ const badRequest = (message: string) => ({
   message,
 });
 
-test.serial('slug is not present', async (t) => {
+test.serial('slug is missing', async (t) => {
   const { slug, ...rest } = buildValidProductCategoryPayload();
 
   const res = await postProductCategory(rest);
@@ -22,20 +22,20 @@ test.serial('slug is not present', async (t) => {
   );
 });
 
-test.serial('slug is missing', async (t) => {
+test.serial('slug is shorter than 2 chars', async (t) => {
   const res = await postProductCategory({
     ...buildValidProductCategoryPayload(),
-    slug: '',
+    slug: 'a',
   });
 
   t.is(res.statusCode, 400);
   t.deepEqual(
     res.json(),
-    badRequest('body.slug should NOT be shorter than 1 characters'),
+    badRequest('body.slug should NOT be shorter than 2 characters'),
   );
 });
 
-test.serial('slug is above 40 characters', async (t) => {
+test.serial('slug is above 40 chars', async (t) => {
   const res = await postProductCategory({
     ...buildValidProductCategoryPayload(),
     slug: 'a'.repeat(41),

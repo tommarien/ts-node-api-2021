@@ -13,7 +13,7 @@ export const productCategoryBodySchema = Schema.object()
   .prop(
     'slug',
     Schema.string()
-      .minLength(1)
+      .minLength(2)
       .maxLength(40)
       .raw({ format: 'slug' })
       .required(),

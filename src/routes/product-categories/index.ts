@@ -8,7 +8,7 @@ import {
   productCategoryBodySchema,
   ProductCategoryReply,
   productCategoryReplySchema,
-} from './resource';
+} from './schemas';
 
 const mapToReply = (category: ProductCategory) => ({
   id: category._id.toHexString(),
