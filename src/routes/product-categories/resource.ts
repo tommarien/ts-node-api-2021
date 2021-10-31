@@ -10,8 +10,15 @@ export interface ProductCategoryReply extends ProductCategoryBody {
 }
 
 export const productCategoryBodySchema = Schema.object()
-  .prop('slug', Schema.string().minLength(1).maxLength(40).raw({ format: 'slug' }).required())
-  .prop('name', Schema.string());
+  .prop(
+    'slug',
+    Schema.string()
+      .minLength(1)
+      .maxLength(40)
+      .raw({ format: 'slug' })
+      .required(),
+  )
+  .prop('name', Schema.string().maxLength(60).required());
 
 export const productCategoryReplySchema = Schema.object()
   .prop('id', Schema.string())
