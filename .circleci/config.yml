@@ -1,0 +1,61 @@
+version: 2.1
+
+executors:
+  node_lts: # declares a reusable executor
+    docker:
+      - image: &NODE_VERSION node:16.13.0
+
+jobs:
+  build:
+    executor: node_lts
+    steps:
+      - checkout
+
+      - restore_cache:
+          keys:
+            - npm-v16-{{ checksum "package.json" }}
+
+      - run:
+          name: install dependencies
+          command: npm install
+
+      - save_cache:
+          key: npm-v16-{{ checksum "package.json" }}
+          paths:
+            - node_modules
+
+      # Run linting
+      - run: npm run lint
+
+      # Build
+      - run: npm run build
+
+      # Pass to other jobs
+      - persist_to_workspace:
+          root: ./
+          paths: ./
+
+  test:
+    docker:
+      - image: *NODE_VERSION
+      - image: mongo:4.4.10
+    executor: node_lts
+    steps:
+      - attach_workspace:
+          at: ./
+      - run: mkdir ~/jest
+      - run: JEST_JUNIT_OUTPUT_DIR=~/jest JEST_JUNIT_OUTPUT_NAME=test--junit.xml npm run test  -- --ci --reporters=default --reporters=jest-junit
+
+      - store_test_results:
+          path: ~/jest
+
+      - store_artifacts:
+          path: ~/jest
+workflows:
+  version: 2
+  complete:
+    jobs:
+      - build
+      - test:
+          requires:
+            - build
