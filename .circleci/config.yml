@@ -48,7 +48,7 @@ jobs:
           at: ./
       - run: mkdir ~/reports
       - run: npm run migrate up
-      - run: npx ava --tap | npx tap-xunit > ~/reports/ava.xml
+      - run: npx ava --tap | npx tap-junit > ~/reports/ava.xml
 
       - store_test_results:
           path: ~/reports
