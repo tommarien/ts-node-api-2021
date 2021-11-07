@@ -14,6 +14,7 @@ jobs:
       - restore_cache:
           keys:
             - npm-v16-{{ checksum "package.json" }}
+            - npm-v16
 
       - run:
           name: install dependencies
@@ -47,7 +48,7 @@ jobs:
           at: ./
       - run: mkdir -p $CIRCLE_TEST_REPORTS/reports
       - run: npm run migrate up
-      - run: npm run test | tap-xunit > $CIRCLE_TEST_REPORTS/reports/ava.xml
+      - run: npm run test | npx tap-xunit > $CIRCLE_TEST_REPORTS/reports/ava.xml
 
       - store_test_results:
           path: ~/jest
