@@ -46,12 +46,12 @@ jobs:
     steps:
       - attach_workspace:
           at: ./
-      - run: mkdir -p $CIRCLE_TEST_REPORTS/reports
+      - run: mkdir ~/reports
       - run: npm run migrate up
-      - run: npm run test --tap | npx tap-xunit > $CIRCLE_TEST_REPORTS/reports/ava.xml
+      - run: npx ava --tap | npx tap-xunit > ~/reports/ava.xml
 
       - store_test_results:
-          path: $CIRCLE_TEST_REPORTS/reports
+          path: ~/reports
 
 workflows:
   version: 2
