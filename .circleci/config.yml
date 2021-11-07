@@ -46,12 +46,14 @@ jobs:
     steps:
       - attach_workspace:
           at: ./
-      - run: mkdir ~/reports
+      - run: mkdir ~/ava
       - run: npm run migrate up
-      - run: npx ava --tap | npx tap-junit > ~/reports/ava.xml
+      - run: npx ava --tap | npx tap-junit > ~/ava/ava.xml
 
       - store_test_results:
-          path: ~/reports
+          path: ~/ava
+      - store_artifacts:
+          path: ~/ava
 
 workflows:
   version: 2
