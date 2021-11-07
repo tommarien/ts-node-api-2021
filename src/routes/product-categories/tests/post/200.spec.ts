@@ -21,7 +21,7 @@ export async function postProductCategory(category: object) {
 
 test.before(async () => {
   await db.connect(
-    new MongoClient('mongodb://localhost/webshop-node-2021-test'),
+    new MongoClient(process.env.MONGO_URI),
   );
 });
 

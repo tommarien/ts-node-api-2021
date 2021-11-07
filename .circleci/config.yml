@@ -47,7 +47,7 @@ jobs:
       - attach_workspace:
           at: ./
       - run: mkdir ~/reports
-      - run: npx ts-node node_modules/.bin/migrate-mongo up
+      - run: npm run migrate up
       - run: npx ava --tap | npx tap-xunit > ~/reports/ava.xml
 
       - store_test_results:

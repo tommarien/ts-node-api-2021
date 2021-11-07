@@ -5,7 +5,7 @@ export const buildTestServer = (): ReturnType<typeof fastify> => {
   const server = createServer({
     environment: 'test',
     server: { port: '3000' },
-    mongo: { uri: 'mongodb://localhost/webshop-node-2021-test' },
+    mongo: { uri: process.env.MONGO_URI },
     logger: { level: 'fatal' },
   });
 

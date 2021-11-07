@@ -29,7 +29,7 @@
     "migrate": "NODE_OPTIONS='-r dotenv/config' ts-node node_modules/.bin/migrate-mongo",
     "migrate:test": "MONGO_URI='mongodb://localhost/webshop-node-2021-test' ts-node node_modules/.bin/migrate-mongo",
     "serve": "nodemon -w ./src  --exec ts-node src/main.ts | pino-pretty --translateTime --ignore hostname",
-    "test": "ava"
+    "test": "MONGO_URI='mongodb://localhost/webshop-node-2021-test' ava"
   },
   "devDependencies": {
     "@commitlint/cli": "^14.1.0",

@@ -6,7 +6,7 @@ import { productCategories } from '../../../../../test/generators';
 
 test.before(async () => {
   await db.connect(
-    new MongoClient('mongodb://localhost/webshop-node-2021-test'),
+    new MongoClient(process.env.MONGO_URI),
   );
 
   await db
