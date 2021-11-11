@@ -20,7 +20,6 @@ async function setupServer() {
 }
 
 test.beforeEach((t) => {
-  // eslint-disable-next-line no-param-reassign
   t.context.sandbox = sinon.createSandbox();
 });
 

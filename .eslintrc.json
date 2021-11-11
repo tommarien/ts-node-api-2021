@@ -34,10 +34,11 @@
   },
   "overrides": [
     {
-      "files":[
+      "files": [
         "**/*.spec.ts"
       ],
       "rules": {
+        "no-param-reassign": "off",
         "@typescript-eslint/explicit-module-boundary-types": "off",
         "@typescript-eslint/ban-types": "off"
       }
