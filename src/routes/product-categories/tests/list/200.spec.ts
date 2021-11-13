@@ -1,32 +1,25 @@
-import { MongoClient } from 'mongodb';
-import test from 'ava';
-import * as db from '../../../../db/mongodb';
-import { buildTestServer } from '../../../../../test/server';
 import { productCategories } from '../../../../../test/generators';
+import { buildTestServer, test } from '../../../../../test/server';
 
-test.before(async () => {
-  await db.connect(
-    new MongoClient(process.env.MONGO_URI),
-  );
+test.before(async (t) => {
+  const server = await buildTestServer();
 
-  await db
-    .getDb()
-    .productCategories.insertMany([
-      productCategories.televisionAndVideo(),
-      productCategories.computerMonitors(),
-      productCategories.cellPhoneAndAccessories(),
-    ]);
+  t.context.server = server;
+
+  await server.mongo.db.productCategories.insertMany([
+    productCategories.televisionAndVideo(),
+    productCategories.computerMonitors(),
+    productCategories.cellPhoneAndAccessories(),
+  ]);
 });
 
-test.after.always(async () => {
-  await db.getDb().productCategories.deleteMany({});
-  await db.disconnect();
+test.after.always(async (t) => {
+  await t.context.server.mongo.db.productCategories.deleteMany({});
+  await t.context.server.close();
 });
 
 test.serial('returns the categories', async (t) => {
-  const server = buildTestServer();
-
-  const response = await server.inject({
+  const response = await t.context.server.inject({
     method: 'GET',
     url: '/api/product-categories',
   });

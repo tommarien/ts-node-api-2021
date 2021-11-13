@@ -1,7 +1,4 @@
-import test from 'ava';
-import { MongoClient } from 'mongodb';
-import { buildTestServer } from '../../../../../test/server';
-import { connect, disconnect, getDb } from '../../../../db/mongodb';
+import { buildTestServer, test } from '../../../../../test/server';
 
 export const buildValidProductCategoryPayload = () => ({
   slug: 'television-and-video',
@@ -18,17 +15,19 @@ export async function postProductCategory(category: object) {
   });
 }
 
-test.before(async () => {
-  await connect(new MongoClient(process.env.MONGO_URI));
+test.before(async (t) => {
+  t.context.server = await buildTestServer();
 });
 
-test.after.always(async () => {
-  await getDb().productCategories.deleteMany({});
-  await disconnect();
+test.after.always(async (t) => {
+  await t.context.server.mongo.db.productCategories.deleteMany({});
+  await t.context.server.close();
 });
 
 test.serial('slug is not unique', async (t) => {
-  await getDb().productCategories.insertOne(buildValidProductCategoryPayload());
+  await t.context.server.mongo.db.productCategories.insertOne(
+    buildValidProductCategoryPayload(),
+  );
 
   const res = await postProductCategory(buildValidProductCategoryPayload());
 

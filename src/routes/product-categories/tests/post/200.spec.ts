@@ -1,8 +1,5 @@
-import test from 'ava';
-import { MongoClient } from 'mongodb';
-import { buildTestServer } from '../../../../../test/server';
-import * as db from '../../../../db/mongodb';
 import { ProductCategory } from '../../../../db/product-category';
+import { buildTestServer, test } from '../../../../../test/server';
 
 export const buildValidProductCategoryPayload = () => ({
   slug: 'television-and-video',
@@ -19,17 +16,17 @@ export async function postProductCategory(category: object) {
   });
 }
 
-test.before(async () => {
-  await db.connect(
-    new MongoClient(process.env.MONGO_URI),
-  );
+test.before(async (t) => {
+  t.context.server = await buildTestServer();
 });
 
-test.afterEach.always(async () => {
-  await db.getDb().productCategories.deleteMany({});
+test.afterEach.always(async (t) => {
+  await t.context.server.mongo.db.productCategories.deleteMany({});
 });
 
-test.after(db.disconnect);
+test.after.always(async (t) => {
+  await t.context.server.close();
+});
 
 test.serial('creates a new productCategory', async (t) => {
   const payload = buildValidProductCategoryPayload();
@@ -38,9 +35,8 @@ test.serial('creates a new productCategory', async (t) => {
 
   t.is(res.statusCode, 200);
 
-  const storedProductCategory = (await db
-    .getDb()
-    .productCategories.findOne()) as ProductCategory;
+  const storedProductCategory =
+    (await t.context.server.mongo.db.productCategories.findOne()) as ProductCategory;
 
   t.not(storedProductCategory, null);
 

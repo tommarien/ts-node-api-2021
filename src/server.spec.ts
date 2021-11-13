@@ -1,9 +1,13 @@
 import avaTest, { TestInterface } from 'ava';
 import sinon, { SinonSandbox } from 'sinon';
 import crypto from 'crypto';
+import { FastifyInstance } from 'fastify';
 import { buildTestServer } from '../test/server';
 
-const test = avaTest as TestInterface<{ sandbox: SinonSandbox }>;
+const test = avaTest as TestInterface<{
+  sandbox: SinonSandbox;
+  server: FastifyInstance;
+}>;
 
 async function setupServer() {
   const server = buildTestServer();
@@ -19,20 +23,26 @@ async function setupServer() {
   return server;
 }
 
-test.beforeEach((t) => {
+test.before(async (t) => {
+  t.context.server = await setupServer();
+});
+
+test.beforeEach(async (t) => {
   t.context.sandbox = sinon.createSandbox();
 });
 
-test.afterEach((t) => {
+test.afterEach.always((t) => {
   t.context.sandbox.restore();
 });
 
-test('it echoes the value of the x-request-id header', async (t) => {
-  const server = await setupServer();
+test.after.always(async (t) => {
+  await t.context.server.close();
+});
 
+test('it echoes the value of the x-request-id header', async (t) => {
   const reqId = 'cf03dfbf-ad44-4d24-b1b3-6a044bdbf570';
 
-  const response = await server.inject({
+  const response = await t.context.server.inject({
     method: 'GET',
     url: '/echo-request-id',
     headers: {
@@ -47,11 +57,11 @@ test('it echoes the value of the x-request-id header', async (t) => {
 test('it creates a new request id using randomUUID', async (t) => {
   const reqId = 'request-id';
 
-  const randomUUIDStub = t.context.sandbox.stub(crypto, 'randomUUID').returns(reqId);
+  const randomUUIDStub = t.context.sandbox
+    .stub(crypto, 'randomUUID')
+    .returns(reqId);
 
-  const server = await setupServer();
-
-  const response = await server.inject({
+  const response = await t.context.server.inject({
     method: 'GET',
     url: '/echo-request-id',
   });

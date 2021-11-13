@@ -1,4 +1,4 @@
-import test from 'ava';
+import { buildTestServer, test } from '../../../../../test/server';
 import {
   buildValidProductCategoryPayload,
   postProductCategory,
@@ -8,6 +8,15 @@ const badRequest = (message: string) => ({
   statusCode: 400,
   error: 'Bad Request',
   message,
+});
+
+test.before(async (t) => {
+  t.context.server = await buildTestServer();
+});
+
+test.after.always(async (t) => {
+  await t.context.server.mongo.db.productCategories.deleteMany({});
+  await t.context.server.close();
 });
 
 test.serial('slug is missing', async (t) => {
