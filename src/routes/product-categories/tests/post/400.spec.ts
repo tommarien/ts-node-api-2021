@@ -14,12 +14,15 @@ test.before(async (t) => {
   t.context.server = await buildTestServer();
 });
 
-test.after.always(async (t) => {
+test.afterEach(async (t) => {
   await t.context.server.mongo.db.productCategories.deleteMany({});
+});
+
+test.after.always(async (t) => {
   await t.context.server.close();
 });
 
-test.serial('slug is missing', async (t) => {
+test('slug is missing', async (t) => {
   const { slug, ...rest } = buildValidProductCategoryPayload();
 
   const res = await postProductCategory(rest);
@@ -31,7 +34,7 @@ test.serial('slug is missing', async (t) => {
   );
 });
 
-test.serial('slug is shorter than 2 chars', async (t) => {
+test('slug is shorter than 2 chars', async (t) => {
   const res = await postProductCategory({
     ...buildValidProductCategoryPayload(),
     slug: 'a',
@@ -44,7 +47,7 @@ test.serial('slug is shorter than 2 chars', async (t) => {
   );
 });
 
-test.serial('slug is above 40 chars', async (t) => {
+test('slug is above 40 chars', async (t) => {
   const res = await postProductCategory({
     ...buildValidProductCategoryPayload(),
     slug: 'a'.repeat(41),
@@ -57,7 +60,7 @@ test.serial('slug is above 40 chars', async (t) => {
   );
 });
 
-test.serial('slug is not a valid slug', async (t) => {
+test('slug is not a valid slug', async (t) => {
   const res = await postProductCategory({
     ...buildValidProductCategoryPayload(),
     slug: 'this-is-not-!-valid',
@@ -67,7 +70,7 @@ test.serial('slug is not a valid slug', async (t) => {
   t.deepEqual(res.json(), badRequest('body.slug should match format "slug"'));
 });
 
-test.serial('name is missing', async (t) => {
+test('name is missing', async (t) => {
   const { name, ...rest } = buildValidProductCategoryPayload();
 
   const res = await postProductCategory(rest);
@@ -79,7 +82,7 @@ test.serial('name is missing', async (t) => {
   );
 });
 
-test.serial('name is longer than 60 chars', async (t) => {
+test('name is longer than 60 chars', async (t) => {
   const res = await postProductCategory({
     ...buildValidProductCategoryPayload(),
     name: 'b'.repeat(61),

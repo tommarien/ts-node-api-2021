@@ -1,5 +1,5 @@
-import { ProductCategory } from '../../../../db/product-category';
 import { buildTestServer, test } from '../../../../../test/server';
+import { ProductCategory } from '../../../../db/product-category';
 
 export const buildValidProductCategoryPayload = () => ({
   slug: 'television-and-video',
@@ -28,7 +28,7 @@ test.after.always(async (t) => {
   await t.context.server.close();
 });
 
-test.serial('creates a new productCategory', async (t) => {
+test('creates a new productCategory', async (t) => {
   const payload = buildValidProductCategoryPayload();
 
   const res = await postProductCategory(payload);

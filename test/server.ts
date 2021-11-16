@@ -1,4 +1,4 @@
-import ava, { TestInterface } from 'ava';
+import { serial, SerialInterface } from 'ava';
 import fastify, { FastifyInstance } from 'fastify';
 import createServer from '../src/server';
 
@@ -13,4 +13,4 @@ export const buildTestServer = (): ReturnType<typeof fastify> => {
   return server;
 };
 
-export const test = ava as TestInterface<{ server: FastifyInstance }>;
+export const test = serial as SerialInterface<{ server: FastifyInstance }>;

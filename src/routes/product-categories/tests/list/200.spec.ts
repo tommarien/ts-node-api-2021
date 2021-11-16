@@ -18,7 +18,7 @@ test.after.always(async (t) => {
   await t.context.server.close();
 });
 
-test.serial('returns the categories', async (t) => {
+test('returns the categories', async (t) => {
   const response = await t.context.server.inject({
     method: 'GET',
     url: '/api/product-categories',

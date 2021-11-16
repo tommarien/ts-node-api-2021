@@ -24,7 +24,7 @@ test.after.always(async (t) => {
   await t.context.server.close();
 });
 
-test.serial('slug is not unique', async (t) => {
+test('slug is not unique', async (t) => {
   await t.context.server.mongo.db.productCategories.insertOne(
     buildValidProductCategoryPayload(),
   );
