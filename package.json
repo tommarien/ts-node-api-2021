@@ -32,9 +32,9 @@
     "test": "MONGO_URI='mongodb://localhost/webshop-node-2021-test' ava"
   },
   "devDependencies": {
-    "@commitlint/cli": "^14.1.0",
-    "@commitlint/config-conventional": "^14.1.0",
-    "@types/node": "^16.11.7",
+    "@commitlint/cli": "^15.0.0",
+    "@commitlint/config-conventional": "^15.0.0",
+    "@types/node": "^16.11.9",
     "@types/sinon": "^10.0.6",
     "@typescript-eslint/eslint-plugin": "^5.4.0",
     "@typescript-eslint/parser": "^5.4.0",
@@ -43,7 +43,7 @@
     "dotenv": "^10.0.0",
     "eslint": "^8.2.0",
     "eslint-config-airbnb-base": "^15.0.0",
-    "eslint-config-airbnb-typescript": "^15.0.0",
+    "eslint-config-airbnb-typescript": "^16.0.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-import": "^2.25.3",
     "nodemon": "^2.0.15",
@@ -53,10 +53,10 @@
     "sinon": "^12.0.1",
     "tap-junit": "^5.0.1",
     "ts-node": "^10.4.0",
-    "typescript": "^4.4.4"
+    "typescript": "^4.5.2"
   },
   "dependencies": {
-    "ajv": "^8.8.0",
+    "ajv": "^8.8.1",
     "env-schema": "^3.5.0",
     "fastify": "^3.24.0",
     "fastify-autoload": "^3.9.0",
@@ -65,6 +65,6 @@
     "fastify-swagger": "^4.12.6",
     "fluent-json-schema": "^3.0.1",
     "migrate-mongo": "^8.2.3",
-    "mongodb": "^4.1.4"
+    "mongodb": "^4.2.0"
   }
 }
