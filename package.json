@@ -41,7 +41,7 @@
     "ava": "^3.15.0",
     "concurrently": "^6.4.0",
     "dotenv": "^10.0.0",
-    "eslint": "^8.2.0",
+    "eslint": "^8.3.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-airbnb-typescript": "^16.0.0",
     "eslint-config-prettier": "^8.3.0",
@@ -56,7 +56,7 @@
     "typescript": "^4.5.2"
   },
   "dependencies": {
-    "ajv": "^8.8.1",
+    "ajv": "^8.8.2",
     "env-schema": "^3.5.0",
     "fastify": "^3.24.0",
     "fastify-autoload": "^3.9.0",
