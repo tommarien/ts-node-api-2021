@@ -2,11 +2,11 @@ import { FastifyPluginAsync } from 'fastify';
 import fp from 'fastify-plugin';
 import { MongoClient, ObjectId } from 'mongodb';
 import { Config } from '../../config/config';
-import { Db, getDb, registerClient } from '../../db/mongodb';
+import { DbContext } from '../../db/db-context';
 
 export interface FastifyMongo {
   client: MongoClient;
-  db: Readonly<Db>;
+  db: DbContext;
   ObjectId: typeof ObjectId;
 }
 
@@ -14,11 +14,9 @@ const mongodb: FastifyPluginAsync<Config> = async (instance, config) => {
   const client = new MongoClient(config.mongo.uri);
   await client.connect();
 
-  registerClient(client);
-
   const mongo: FastifyMongo = {
     client,
-    db: getDb(client),
+    db: new DbContext(client),
     ObjectId,
   };
 
