@@ -2,7 +2,8 @@ import { FastifyPluginAsync } from 'fastify';
 import Schema from 'fluent-json-schema';
 import { MongoServerError } from 'mongodb';
 import { Config } from '../../config/config';
-import { ProductCategoryController } from '../../controllers';
+import { ProductCategoryController } from '../../controllers/product-category-controller';
+import { ServiceIdentifier } from '../../service';
 import {
   ProductCategoryBody,
   productCategoryBodySchema,
@@ -22,7 +23,10 @@ const productCategoryApi: FastifyPluginAsync<Config> = async (server) => {
       },
     },
     function listProductCategories() {
-      const controller = new ProductCategoryController(this.mongo.db);
+      const controller = this.container.get<ProductCategoryController>(
+        ServiceIdentifier.controllers.productCategory,
+      );
+
       return controller.list();
     },
   );
@@ -41,7 +45,9 @@ const productCategoryApi: FastifyPluginAsync<Config> = async (server) => {
       },
     },
     function postProductCategory(req) {
-      const controller = new ProductCategoryController(this.mongo.db);
+      const controller = this.container.get<ProductCategoryController>(
+        ServiceIdentifier.controllers.productCategory,
+      );
 
       return controller.save(req.body).catch((err) => {
         if (err instanceof MongoServerError) {

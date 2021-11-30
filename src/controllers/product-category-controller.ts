@@ -1,9 +1,11 @@
+import { inject, injectable } from 'inversify';
 import { DbContext } from '../db/db-context';
 import { ProductCategory } from '../db/product-category';
 import {
   ProductCategoryBody,
   ProductCategoryReply,
 } from '../routes/product-categories/schemas';
+import { ServiceIdentifier } from '../service';
 
 const mapToReply = (category: ProductCategory) => ({
   id: category._id.toHexString(),
@@ -11,8 +13,11 @@ const mapToReply = (category: ProductCategory) => ({
   name: category.name,
 });
 
+@injectable()
 export class ProductCategoryController {
-  constructor(private readonly db: DbContext) {}
+  constructor(
+    @inject(ServiceIdentifier.DbContext) private readonly db: DbContext,
+  ) {}
 
   async list(): Promise<ProductCategoryReply[]> {
     const categories = await this.db.productCategories

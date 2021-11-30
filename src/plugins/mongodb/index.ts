@@ -24,4 +24,4 @@ const mongodb: FastifyPluginAsync<Config> = async (instance, config) => {
   instance.addHook('onClose', () => client.close());
 };
 
-export default fp(mongodb);
+export default fp(mongodb, { name: 'fastify-mongo' });
