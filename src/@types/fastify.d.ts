@@ -1,9 +1,12 @@
-import { interfaces } from 'inversify';
 import { FastifyMongo } from '../plugins/mongodb';
+import { DependencyScope } from './api';
 
 declare module 'fastify' {
   interface FastifyInstance {
     mongo: FastifyMongo;
-    container: interfaces.Container;
+  }
+
+  interface FastifyRequest {
+    container: DependencyScope;
   }
 }
