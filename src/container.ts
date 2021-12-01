@@ -1,4 +1,3 @@
-import 'reflect-metadata';
 import { Container, interfaces } from 'inversify';
 import controllerContainerModule from './controllers/controller-module';
 import { FastifyMongo } from './plugins/mongodb';

@@ -1,3 +1,5 @@
+import 'reflect-metadata';
+
 import { serial, SerialInterface } from 'ava';
 import fastify, { FastifyInstance } from 'fastify';
 import createServer from '../src/server';

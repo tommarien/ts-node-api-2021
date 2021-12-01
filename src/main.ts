@@ -1,3 +1,4 @@
+import 'reflect-metadata';
 import createServer from './server';
 import getConfig from './config/config';
 
@@ -21,18 +22,16 @@ async function main() {
     process.once(signal, () => {
       server.log.info({ signal }, 'closing application');
 
-      server
-        .close()
-        .then(
-          () => {
-            server.log.info({ signal }, 'application closed');
-            process.exit(0);
-          },
-          (err) => {
-            server.log.error({ err }, 'Error closing the application');
-            process.exit(1);
-          },
-        );
+      server.close().then(
+        () => {
+          server.log.info({ signal }, 'application closed');
+          process.exit(0);
+        },
+        (err) => {
+          server.log.error({ err }, 'Error closing the application');
+          process.exit(1);
+        },
+      );
     });
   }
 }
