@@ -6,7 +6,7 @@ import buildContainer from '../../container';
 const tsyringePlugin: FastifyPluginAsync = async (instance) => {
   const container = buildContainer(instance.mongo);
 
-  instance.decorateRequest('scope', null);
+  instance.decorateRequest('container', null);
 
   instance.addHook('onRequest', async (req) => {
     req.container = container.createChildContainer();
