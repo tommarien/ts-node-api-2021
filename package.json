@@ -32,8 +32,6 @@
     "test": "MONGO_URI='mongodb://localhost/webshop-node-2021-test' mocha"
   },
   "devDependencies": {
-    "@commitlint/cli": "^15.0.0",
-    "@commitlint/config-conventional": "^15.0.0",
     "@types/chai": "^4.3.0",
     "@types/mocha": "^9.0.0",
     "@types/node": "^16.11.14",
