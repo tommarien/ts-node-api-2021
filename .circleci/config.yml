@@ -46,14 +46,14 @@ jobs:
     steps:
       - attach_workspace:
           at: ./
-      - run: mkdir ~/ava
+      - run: mkdir ~/junit
       - run: npm run migrate up
-      - run: npx ava --tap | npx tap-junit > ~/ava/ava.xml
-
+      - run:
+          command: MOCHA_FILE=~/junit/test-results.xml npx mocha -- --reporter=mocha-junit-reporter
       - store_test_results:
-          path: ~/ava
+          path: ~/junit
       - store_artifacts:
-          path: ~/ava
+          path: ~/junit
 
 workflows:
   version: 2

@@ -11,5 +11,8 @@
   },
   "[json]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "mochaExplorer.env": {
+    "MONGO_URI": "mongodb://localhost/webshop-node-2021-test"
   }
 }

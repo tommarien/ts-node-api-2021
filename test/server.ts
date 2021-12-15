@@ -1,7 +1,6 @@
 import 'reflect-metadata';
 
-import { serial, SerialInterface } from 'ava';
-import fastify, { FastifyInstance } from 'fastify';
+import fastify from 'fastify';
 import createServer from '../src/server';
 
 export const buildTestServer = (): ReturnType<typeof fastify> => {
@@ -14,5 +13,3 @@ export const buildTestServer = (): ReturnType<typeof fastify> => {
 
   return server;
 };
-
-export const test = serial as SerialInterface<{ server: FastifyInstance }>;

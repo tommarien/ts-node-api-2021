@@ -1,49 +1,71 @@
-import test from 'ava';
+import { expect } from 'chai';
 import getConfig from './config';
 
-test.beforeEach(() => {
-  Object.assign(process.env, { MONGO_URI: 'mongodb://localhost/fake' });
-});
+describe('Config', () => {
+  let environmentSnapShot: NodeJS.ProcessEnv;
 
-test('applies the defaults', (t) => {
-  t.deepEqual(getConfig(), {
-    environment: 'local',
-    server: { port: '3000' },
-    mongo: { uri: 'mongodb://localhost/fake' },
-    logger: { level: 'info' },
+  before(() => {
+    environmentSnapShot = { ...process.env };
   });
-});
 
-test('configures the environment', (t) => {
-  const runtimeEnv = 'dev';
+  after(() => {
+    process.env = environmentSnapShot;
+  });
 
-  Object.assign(process.env, { RUNTIME_ENV: runtimeEnv });
+  beforeEach(() => {
+    Object.assign(process.env, { MONGO_URI: 'mongodb://localhost/fake' });
+  });
 
-  t.like(getConfig(), { environment: runtimeEnv }, 'environment is set as configured');
-});
+  it('applies the defaults', () => {
+    expect(getConfig()).to.deep.equal({
+      environment: 'local',
+      server: { port: '3000' },
+      mongo: { uri: 'mongodb://localhost/fake' },
+      logger: { level: 'info' },
+    });
+  });
 
-test('configures the server', (t) => {
-  const configuredPort = '4000';
-  Object.assign(process.env, { PORT: configuredPort });
+  it('configures the environment', () => {
+    const runtimeEnv = 'dev';
 
-  t.like(getConfig(), { server: { port: configuredPort } }, 'port is set as configured');
-});
+    Object.assign(process.env, { RUNTIME_ENV: runtimeEnv });
 
-test('configures our mongo', (t) => {
-  const configuredUri = 'mongodb://localhost/db';
-  Object.assign(process.env, { MONGO_URI: configuredUri });
+    expect(getConfig()).to.haveOwnProperty('environment', runtimeEnv);
+  });
 
-  t.like(getConfig(), { mongo: { uri: configuredUri } }, 'uri is set as configured');
-});
+  it('configures the server', () => {
+    const configuredPort = '4000';
+    Object.assign(process.env, { PORT: configuredPort });
 
-test('configures our logger', (t) => {
-  const configuredLevel = 'warn';
-  Object.assign(process.env, { LOG_LEVEL: configuredLevel });
+    expect(getConfig())
+      .to.haveOwnProperty('server')
+      .that.deep.equals({ port: configuredPort });
+  });
 
-  t.like(getConfig(), { logger: { level: configuredLevel } }, 'level is set as configured');
+  it('configures our mongo', () => {
+    const configuredUri = 'mongodb://localhost/db';
+    Object.assign(process.env, { MONGO_URI: configuredUri });
 
-  const unknownLevel = 'darn';
-  Object.assign(process.env, { LOG_LEVEL: unknownLevel });
+    expect(getConfig())
+      .to.haveOwnProperty('mongo')
+      .that.deep.equals({ uri: configuredUri });
+  });
 
-  t.throws(getConfig, undefined, 'throws when invalid');
+  it('configures our logger', () => {
+    const configuredLevel = 'warn';
+    Object.assign(process.env, { LOG_LEVEL: configuredLevel });
+
+    expect(getConfig())
+      .to.haveOwnProperty('logger')
+      .that.deep.equals({ level: configuredLevel });
+  });
+
+  it('throws when the logLevel is unknown', () => {
+    const unknownLevel = 'darn';
+    Object.assign(process.env, { LOG_LEVEL: unknownLevel });
+
+    expect(getConfig).to.throw(
+      'env/LOG_LEVEL must be equal to one of the allowed values',
+    );
+  });
 });
