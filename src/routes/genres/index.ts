@@ -2,6 +2,7 @@ import { FastifyPluginAsync } from 'fastify';
 import Schema from 'fluent-json-schema';
 import { GenreController } from '../../controllers';
 import { GenreRequestBody, GenreResponseBody } from '../../dtos';
+import { Tag } from '../../tag';
 
 const genreRequestBodySchema = Schema.object().prop(
   'name',
@@ -17,7 +18,7 @@ const genreApi: FastifyPluginAsync = async (server) => {
     '/',
     {
       schema: {
-        tags: ['genres'],
+        tags: [Tag.Genre],
         body: genreRequestBodySchema,
         response: {
           200: genreResponseBodySchema,

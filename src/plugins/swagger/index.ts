@@ -3,6 +3,7 @@ import fp from 'fastify-plugin';
 import swagger from 'fastify-swagger';
 import { Config } from '../../config/config';
 import { version } from '../../../package.json';
+import { Tag } from '../../tag';
 
 const swaggerPlugin: FastifyPluginCallback<Config> = (instance, opts, done) => {
   if (opts.environment !== 'pro') {
@@ -15,11 +16,13 @@ const swaggerPlugin: FastifyPluginCallback<Config> = (instance, opts, done) => {
           description: 'An api build with fastify',
           version,
         },
-        tags: [{ name: 'product-category', description: 'Product Category' }],
+        tags: [
+          { name: 'product-category', description: 'Product Category' },
+          { name: Tag.Genre, description: 'Genre management' },
+        ],
       },
     });
   }
-
 
   done();
 };
