@@ -1,15 +1,11 @@
 import { expect } from 'chai';
 import getConfig from './config';
 
+const env = { ...process.env };
+
 describe('Config', () => {
-  let environmentSnapShot: NodeJS.ProcessEnv;
-
-  before(() => {
-    environmentSnapShot = { ...process.env };
-  });
-
   after(() => {
-    process.env = environmentSnapShot;
+    process.env = env;
   });
 
   beforeEach(() => {
