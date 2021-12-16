@@ -1,4 +1,5 @@
 import { Collection, MongoClient } from 'mongodb';
+import { Genre } from './genre';
 import { ProductCategory } from './product-category';
 
 export class DbContext {
@@ -6,5 +7,9 @@ export class DbContext {
 
   get productCategories(): Collection<ProductCategory> {
     return this.mongoClient.db().collection('productCategories');
+  }
+
+  get genres(): Collection<Genre> {
+    return this.mongoClient.db().collection('genres')
   }
 }
