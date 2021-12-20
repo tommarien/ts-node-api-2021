@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import { buildTestServer } from '../../../test/server';
-import { GenreRequestBody } from '../../dtos';
+import { GenreRequestBody } from '../../services';
 
 const url = '/api/genres';
 

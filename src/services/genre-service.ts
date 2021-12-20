@@ -1,7 +1,14 @@
 import { injectable } from 'tsyringe';
 import { DbContext } from '../db/db-context';
 import { Genre } from '../db/genre';
-import { GenreRequestBody, GenreResponseBody } from '../dtos';
+
+export interface GenreRequestBody {
+  name: string;
+}
+
+export interface GenreResponseBody extends GenreRequestBody {
+  id: string;
+}
 
 const map = ({ _id, name }: Genre): GenreResponseBody => ({
   id: _id.toHexString(),
@@ -15,6 +22,6 @@ export class GenreService {
   async save(genre: GenreRequestBody): Promise<GenreResponseBody> {
     const { insertedId } = await this.db.genres.insertOne(genre);
 
-    return map({ _id: insertedId, ...genre })
+    return map({ _id: insertedId, ...genre });
   }
 }
