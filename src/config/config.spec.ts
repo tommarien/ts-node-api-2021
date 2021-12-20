@@ -9,7 +9,7 @@ describe('Config', () => {
   });
 
   beforeEach(() => {
-    Object.assign(process.env, { MONGO_URI: 'mongodb://localhost/fake' });
+    process.env = { MONGO_URI: 'mongodb://localhost/fake' };
   });
 
   it('applies the defaults', () => {
