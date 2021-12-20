@@ -1,3 +1,1 @@
-import * as productCategories from './product-category';
-
-export { productCategories };
+export * from './genre';

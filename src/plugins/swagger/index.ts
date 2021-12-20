@@ -16,10 +16,7 @@ const swaggerPlugin: FastifyPluginCallback<Config> = (instance, opts, done) => {
           description: 'An api build with fastify',
           version,
         },
-        tags: [
-          { name: 'product-category', description: 'Product Category' },
-          { name: Tag.Genre, description: 'Genre management' },
-        ],
+        tags: [{ name: Tag.Genre, description: 'Genre management' }],
       },
     });
   }

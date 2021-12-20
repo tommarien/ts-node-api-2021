@@ -19,6 +19,7 @@ export default function createServer(
       plugins: [
         (ajv: Ajv) => {
           ajv.addFormat('slug', /^[a-z0-9]+(?:-[a-z0-9]+)*$/);
+          ajv.addFormat('object-id', /^[\da-fA-F]{24}$/);
         },
       ],
     },

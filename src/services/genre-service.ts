@@ -24,4 +24,10 @@ export class GenreService {
 
     return map({ _id: insertedId, ...genre });
   }
+
+  async list(): Promise<GenreResponseBody[]> {
+    const genres = await this.db.genres.find().sort({ _id: 1 }).toArray();
+
+    return genres.map(map);
+  }
 }
