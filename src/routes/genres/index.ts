@@ -1,7 +1,7 @@
 import { FastifyPluginAsync } from 'fastify';
 import Schema from 'fluent-json-schema';
-import { GenreController } from '../../controllers';
 import { GenreRequestBody, GenreResponseBody } from '../../dtos';
+import { GenreService } from '../../services';
 import { Tag } from '../../tag';
 
 const genreRequestBodySchema = Schema.object().prop(
@@ -27,8 +27,8 @@ const genreApi: FastifyPluginAsync = async (server) => {
       },
     },
     (req) => {
-      const controller = req.container.resolve(GenreController);
-      return controller.save(req.body);
+      const service = req.container.resolve(GenreService);
+      return service.save(req.body);
     },
   );
 };

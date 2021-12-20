@@ -9,7 +9,7 @@ const map = ({ _id, name }: Genre): GenreResponseBody => ({
 });
 
 @injectable()
-export class GenreController {
+export class GenreService {
   constructor(private readonly db: DbContext) {}
 
   async save(genre: GenreRequestBody): Promise<GenreResponseBody> {
