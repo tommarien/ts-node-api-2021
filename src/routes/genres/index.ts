@@ -7,10 +7,16 @@ import {
 } from '../../services';
 import { Tag } from '../../tag';
 
-const genreRequestBodySchema = Schema.object().prop(
-  'name',
-  Schema.string().maxLength(40).required(),
-);
+const genreRequestBodySchema = Schema.object()
+  .prop(
+    'slug',
+    Schema.string()
+      .minLength(2)
+      .maxLength(40)
+      .raw({ format: 'slug' })
+      .required(),
+  )
+  .prop('name', Schema.string().maxLength(40).required());
 
 const genreResponseBodySchema = genreRequestBodySchema.extend(
   Schema.object().prop('id', Schema.string().raw({ format: 'object-id' })),
@@ -42,6 +48,7 @@ const genreApi: FastifyPluginAsync = async (server) => {
         response: {
           200: genreResponseBodySchema,
           400: Schema.ref('badRequest').description('Bad Request'),
+          409: Schema.ref('conflict').description('Conflict'),
         },
       },
     },

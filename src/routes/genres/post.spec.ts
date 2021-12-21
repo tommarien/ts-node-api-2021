@@ -1,10 +1,14 @@
 import { expect } from 'chai';
+import { createGenre } from '../../../test/generators';
 import { buildTestServer } from '../../../test/server';
 import { GenreRequestBody } from '../../services';
 
 const url = '/api/genres';
 
-const buildGenre = (): GenreRequestBody => ({ name: 'Action' });
+const buildValidBody = (): GenreRequestBody => ({
+  name: 'Action',
+  slug: 'action',
+});
 
 describe(`${url} POST`, () => {
   let server: Awaited<ReturnType<typeof buildTestServer>>;
@@ -30,7 +34,7 @@ describe(`${url} POST`, () => {
   }
   describe('200 (OK)', () => {
     it('creates a new genre', async () => {
-      const payload = buildGenre();
+      const payload = buildValidBody();
 
       const res = await postGenre(payload);
       expect(res).to.haveOwnProperty('statusCode', 200);
@@ -58,7 +62,8 @@ describe(`${url} POST`, () => {
 
     describe('name', () => {
       it('returns the status if name is missing', async () => {
-        const res = await postGenre({});
+        const { name, ...rest } = buildValidBody();
+        const res = await postGenre(rest);
 
         expect(res).to.haveOwnProperty('statusCode', 400);
         expect(res.json()).to.deep.eq(
@@ -68,6 +73,7 @@ describe(`${url} POST`, () => {
 
       it('returns the status if name is longer than 40 chars', async () => {
         const res = await postGenre({
+          ...buildValidBody(),
           name: 'b'.repeat(41),
         });
 
@@ -75,6 +81,72 @@ describe(`${url} POST`, () => {
         expect(res.json()).to.deep.eq(
           badRequest('body.name should NOT be longer than 40 characters'),
         );
+      });
+    });
+
+    describe('slug', () => {
+      it('returns the status if slug is missing', async () => {
+        const { slug, ...rest } = buildValidBody();
+
+        const res = await postGenre(rest);
+
+        expect(res).to.haveOwnProperty('statusCode', 400);
+        expect(res.json()).to.deep.eq(
+          badRequest("body should have required property 'slug'"),
+        );
+      });
+
+      it('returns the status if slug is shorter than 2 chars', async () => {
+        const res = await postGenre({
+          ...buildValidBody(),
+          slug: 'a',
+        });
+
+        expect(res).to.haveOwnProperty('statusCode', 400);
+        expect(res.json()).to.deep.eq(
+          badRequest('body.slug should NOT be shorter than 2 characters'),
+        );
+      });
+
+      it('returns the status if slug is is above 40 chars', async () => {
+        const res = await postGenre({
+          ...buildValidBody(),
+          slug: 'a'.repeat(41),
+        });
+
+        expect(res).to.haveOwnProperty('statusCode', 400);
+        expect(res.json()).to.deep.eq(
+          badRequest('body.slug should NOT be longer than 40 characters'),
+        );
+      });
+
+      it('returns the status if slug is not a valid slug', async () => {
+        const res = await postGenre({
+          ...buildValidBody(),
+          slug: 'this-is-not-!-valid',
+        });
+
+        expect(res).to.haveOwnProperty('statusCode', 400);
+        expect(res.json()).to.deep.eq(
+          badRequest('body.slug should match format "slug"'),
+        );
+      });
+    });
+  });
+
+  describe('409 (Conflict)', () => {
+    before(async () => {
+      await server.mongo.db.genres.insertOne(createGenre());
+    });
+
+    it('returns status if slug is not unique', async () => {
+      const res = await postGenre(buildValidBody());
+
+      expect(res).to.haveOwnProperty('statusCode', 409);
+      expect(res.json()).to.deep.eq({
+        error: 'Conflict',
+        message: "A genre with slug 'action' already exists",
+        statusCode: 409,
       });
     });
   });

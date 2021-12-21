@@ -2,7 +2,6 @@ import { Ajv } from '@fastify/ajv-compiler';
 import { randomUUID } from 'crypto';
 import fastify from 'fastify';
 import autoLoad from 'fastify-autoload';
-import sensible from 'fastify-sensible';
 import path from 'path';
 import { Config } from './config/config';
 
@@ -24,8 +23,6 @@ export default function createServer(
       ],
     },
   });
-
-  server.register(sensible);
 
   server.register(autoLoad, {
     dir: path.join(__dirname, 'plugins'),
