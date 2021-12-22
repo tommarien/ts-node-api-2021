@@ -4,7 +4,7 @@ import { DependencyContainer } from 'tsyringe';
 import buildContainer from '../../container';
 
 const tsyringePlugin: FastifyPluginAsync = async (instance) => {
-  const container = buildContainer(instance.mongo);
+  const container = buildContainer(instance);
 
   instance.decorateRequest('container', null);
 

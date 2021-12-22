@@ -1,11 +1,11 @@
+import { FastifyInstance } from 'fastify';
 import { container, DependencyContainer } from 'tsyringe';
 import { DbContext } from './db/db-context';
-import { FastifyMongo } from './plugins/mongodb';
 
-export default function buildContainer({
-  db,
-}: FastifyMongo): DependencyContainer {
-  container.registerInstance(DbContext, db);
+export default function buildContainer(
+  fastify: FastifyInstance,
+): DependencyContainer {
+  container.registerInstance(DbContext, fastify.mongo.db);
 
   return container;
 }

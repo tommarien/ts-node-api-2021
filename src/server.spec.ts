@@ -30,7 +30,7 @@ describe('Server', () => {
     sinon.restore();
   });
 
-  it('it echoes the value of the x-request-id header', async () => {
+  it('echoes the value of the x-request-id header', async () => {
     const reqId = 'cf03dfbf-ad44-4d24-b1b3-6a044bdbf570';
 
     const response = await server.inject({
@@ -45,7 +45,7 @@ describe('Server', () => {
     expect(response.json()).to.deep.equal({ reqId });
   });
 
-  it('it creates a new request id using randomUUID', async () => {
+  it('creates a new request id using randomUUID', async () => {
     const reqId = 'request-id';
 
     const randomUUIDStub = sinon.stub(crypto, 'randomUUID').returns(reqId);
