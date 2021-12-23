@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import { createGenre } from '../../../test/generators';
 import { buildTestServer } from '../../../test/server';
-import { GenreRequestBody } from '../../services';
+import { GenreRequestBody } from '../../services/genre-service';
 
 const url = '/api/genres';
 

@@ -1,8 +1,7 @@
 import { Conflict } from 'http-errors';
 import { MongoServerError } from 'mongodb';
 import { injectable } from 'tsyringe';
-import { DbContext } from '../db/db-context';
-import { Genre } from '../db/genre';
+import { DbContext, Genre } from '../db';
 
 export interface GenreRequestBody {
   slug: string;
@@ -20,7 +19,7 @@ const map = ({ _id, name, slug }: Genre): GenreResponseBody => ({
 });
 
 @injectable()
-export class GenreService {
+export default class GenreService {
   constructor(private readonly db: DbContext) {}
 
   async save(genre: GenreRequestBody): Promise<GenreResponseBody> {

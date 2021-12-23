@@ -1,10 +1,9 @@
 import { FastifyPluginAsync } from 'fastify';
 import Schema from 'fluent-json-schema';
-import {
+import GenreService, {
   GenreRequestBody,
   GenreResponseBody,
-  GenreService,
-} from '../../services';
+} from '../../services/genre-service';
 import { Tag } from '../../tag';
 
 const genreRequestBodySchema = Schema.object()
