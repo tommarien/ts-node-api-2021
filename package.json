@@ -76,7 +76,7 @@
   "dependencies": {
     "@fastify/ajv-compiler": "^2.1.0",
     "env-schema": "^3.5.1",
-    "fastify": "^3.25.1",
+    "fastify": "^3.25.2",
     "fastify-autoload": "^3.9.0",
     "fastify-plugin": "^3.0.0",
     "fastify-swagger": "^4.13.0",
