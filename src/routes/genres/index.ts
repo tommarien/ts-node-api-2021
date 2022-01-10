@@ -27,6 +27,7 @@ const genreApi: FastifyPluginAsync = async (server) => {
     {
       schema: {
         tags: [Tag.Genre],
+        summary: 'List all genres',
         response: {
           200: Schema.array().items(genreResponseBodySchema),
         },
@@ -43,6 +44,7 @@ const genreApi: FastifyPluginAsync = async (server) => {
     {
       schema: {
         tags: [Tag.Genre],
+        summary: 'Create a genre',
         body: genreRequestBodySchema,
         response: {
           200: genreResponseBodySchema,
