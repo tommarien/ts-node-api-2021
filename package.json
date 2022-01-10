@@ -79,7 +79,7 @@
     "fastify": "^3.25.3",
     "fastify-autoload": "^3.10.0",
     "fastify-plugin": "^3.0.0",
-    "fastify-swagger": "^4.13.0",
+    "fastify-swagger": "^4.13.1",
     "fluent-json-schema": "^3.0.1",
     "http-errors": "^2.0.0",
     "migrate-mongo": "^8.2.3",
