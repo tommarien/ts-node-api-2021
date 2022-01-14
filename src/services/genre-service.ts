@@ -1,5 +1,5 @@
 import { Conflict } from 'http-errors';
-import { MongoServerError, ObjectId } from 'mongodb';
+import { MongoServerError } from 'mongodb';
 import { injectable } from 'tsyringe';
 import { DbContext, Genre } from '../db';
 
@@ -24,11 +24,8 @@ export default class GenreService {
 
   async save(genre: GenreRequestBody): Promise<GenreResponseBody> {
     try {
-      const newGenre: Genre = { ...genre, _id: new ObjectId() };
-
-      await this.db.genres.insertOne(newGenre);
-
-      return map(newGenre);
+      const { insertedId } = await this.db.genres.insertOne(genre);
+      return map({ _id: insertedId, ...genre });
     } catch (err) {
       if (err instanceof MongoServerError) {
         throw new Conflict(`A genre with slug '${genre.slug}' already exists`);
