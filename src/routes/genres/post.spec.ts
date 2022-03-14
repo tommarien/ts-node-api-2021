@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { createGenre } from '../../../test/generators';
+import { buildGenre } from '../../../test/factories';
 import { buildTestServer } from '../../../test/server';
 import { GenreRequestBody } from '../../services/genre-service';
 
@@ -136,7 +136,7 @@ describe(`${url} POST`, () => {
 
   describe('409 (Conflict)', () => {
     before(async () => {
-      await server.mongo.db.genres.insertOne(createGenre());
+      await server.mongo.db.genres.insertOne(buildGenre());
     });
 
     it('returns status if slug is not unique', async () => {

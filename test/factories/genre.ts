@@ -1,14 +1,9 @@
 import { ObjectId } from 'mongodb';
 import { Genre } from '../../src/db/genre';
+import { ObjectFactory } from './factories';
 
-export function createGenre({
+export const buildGenre: ObjectFactory<Genre> = ({
   _id = new ObjectId(),
   slug = 'action',
   name = 'Action',
-}: Partial<Genre> = {}): Genre {
-  return {
-    _id,
-    slug,
-    name,
-  };
-}
+} = {}) => ({ _id, slug, name });

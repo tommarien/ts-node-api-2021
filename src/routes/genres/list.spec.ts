@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { createGenre } from '../../../test/generators';
+import { buildGenre } from '../../../test/factories';
 import { buildTestServer } from '../../../test/server';
 import { Genre } from '../../db/genre';
 
@@ -15,9 +15,9 @@ describe(`${url} GET`, () => {
   before(async () => {
     server = await buildTestServer();
 
-    action = createGenre({ name: 'Action', slug: 'action' });
-    comedy = createGenre({ name: 'Comedy', slug: 'comedy' });
-    thriller = createGenre({ name: 'Thriller', slug: 'thriller' });
+    action = buildGenre({ name: 'Action', slug: 'action' });
+    comedy = buildGenre({ name: 'Comedy', slug: 'comedy' });
+    thriller = buildGenre({ name: 'Thriller', slug: 'thriller' });
 
     await server.mongo.db.genres.insertMany([action, comedy, thriller]);
   });
