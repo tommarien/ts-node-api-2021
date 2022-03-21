@@ -1,7 +1,7 @@
 version: '3.8'
 services:
   mongodb:
-    image: mongo:4.4.10
+    image: mongo:4.4.13
     volumes:
       - node-api:/data/db
     ports:
