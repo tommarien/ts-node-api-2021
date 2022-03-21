@@ -72,7 +72,7 @@
   },
   "dependencies": {
     "@fastify/ajv-compiler": "^2.1.0",
-    "env-schema": "^3.5.2",
+    "env-schema": "^4.0.0",
     "fastify": "^3.27.4",
     "fastify-autoload": "^3.11.0",
     "fastify-plugin": "^3.0.1",
