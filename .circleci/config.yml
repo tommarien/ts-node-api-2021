@@ -13,23 +13,24 @@ jobs:
 
       - restore_cache:
           keys:
-            - npm-v16-{{ checksum "package.json" }}
-            - npm-v16
+            - yarn-v16-{{ checksum "yarn.lock" }}
+            - yarn-v16
 
       - run:
           name: install dependencies
-          command: npm install
+          command: yarn install --frozen-lockfile
 
       - save_cache:
-          key: npm-v16-{{ checksum "package.json" }}
+          key: yarn-v16-{{ checksum "yarn.lock" }}
           paths:
+            - ~/.cache/yarn
             - node_modules
 
       # Run linting
-      - run: npm run lint
+      - run: yarn lint
 
       # Build
-      - run: npm run build
+      - run: yarn build
 
       # Pass to other jobs
       - persist_to_workspace:
@@ -47,7 +48,7 @@ jobs:
       - attach_workspace:
           at: ./
       - run: mkdir ~/junit
-      - run: npm run migrate up
+      - run: yarn migrate up
       - run:
           command: MOCHA_FILE=~/junit/test-results.xml npx mocha -- --reporter=mocha-junit-reporter
       - store_test_results:
