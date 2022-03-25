@@ -1,8 +1,9 @@
+import { Env } from '../config/config';
+
 declare global {
   namespace NodeJS {
-    export interface ProcessEnv {
-      MONGO_URI: string;
-    }
+    // eslint-disable-next-line @typescript-eslint/no-empty-interface
+    export interface ProcessEnv extends Env {}
   }
 }
 
