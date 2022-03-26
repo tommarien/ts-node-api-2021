@@ -13,5 +13,5 @@
     "emitDecoratorMetadata": true /* Enables experimental support for emitting type metadata for decorators. */,
     "resolveJsonModule": true /* Allow json imports */
   },
-  "include": ["src", "migrations", "test", "migrate-mongo-config.js"]
+  "include": ["src", "migrations", "test", "scripts", "migrate-mongo-config.js"]
 }

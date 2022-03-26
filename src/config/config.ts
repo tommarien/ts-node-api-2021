@@ -1,5 +1,6 @@
 import envSchema from 'env-schema';
-import { Env, EnvSchema } from './env.schema';
+import EnvSchema from './env.schema.json';
+import { Env } from './types/env.schema';
 
 export interface Config {
   environment: NonNullable<Env['RUNTIME_ENV']>;
