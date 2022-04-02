@@ -1,0 +1,17 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "allOf": [
+    { "$ref": "./genre-request-body.schema.json" },
+    {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "object-id"
+        }
+      },
+      "required": ["id"],
+      "additionalProperties": false
+    }
+  ]
+}

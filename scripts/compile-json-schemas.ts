@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 /* eslint-disable import/no-extraneous-dependencies */
-import { mkdir, writeFile } from 'fs/promises';
+import { writeFile } from 'fs/promises';
 import glob from 'glob';
 import { compileFromFile } from 'json-schema-to-typescript';
 import path from 'path';
@@ -24,9 +24,9 @@ glob('src/**/*.schema.json', {}, async (err, files) => {
 
     const parsed = path.parse(file);
 
-    const typePath = `${parsed.dir}/types`;
-    await mkdir(typePath, { recursive: true });
-
-    await writeFile(`${typePath}/${parsed.name}.d.ts`, ts);
+    await writeFile(
+      `${parsed.dir}/${parsed.name.split('.')[0]}.type.d.ts`,
+      ts,
+    );
   }
 });

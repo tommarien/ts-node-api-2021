@@ -1,11 +1,12 @@
 import { FastifyPluginAsync } from 'fastify';
 import Schema from 'fluent-json-schema';
-import GenreService, {
-  GenreRequestBody,
-  GenreResponseBody,
-} from '../../services/genre-service';
+import GenreService from '../../services/genre-service';
+
 import { Tag } from '../../tag';
-import { genreRequestBodySchema, genreResponseBodySchema } from './schemas';
+import genreRequestBodySchema from './schemas/genre-request-body.schema.json';
+import genreResponseBodySchema from './schemas/genre-response-body.schema.json';
+import { GenreRequestBody } from './schemas/genre-request-body.type';
+import { GenreResponseBody } from './schemas/genre-response-body.type';
 
 const genreApi: FastifyPluginAsync = async (server) => {
   server.get<{ Reply: GenreResponseBody[] }>(
@@ -15,7 +16,7 @@ const genreApi: FastifyPluginAsync = async (server) => {
         tags: [Tag.Genre],
         summary: 'List all genres',
         response: {
-          200: Schema.array().items(genreResponseBodySchema),
+          200: Schema.array(),
         },
       },
     },

@@ -1,0 +1,20 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "$id": "conflict",
+  "properties": {
+    "statusCode": {
+      "const": 409,
+      "default": 409
+    },
+    "error": {
+      "const": "Conflict",
+      "default": "Conflict"
+    },
+    "message": {
+      "type": "string"
+    }
+  },
+  "required": ["statusCode", "error"],
+  "additionalProperties": false
+}
