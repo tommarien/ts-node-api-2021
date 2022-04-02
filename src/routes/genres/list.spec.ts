@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import { buildGenre } from '../../../test/factories';
 import { buildTestServer } from '../../../test/server';
 import { Genre } from '../../db/genre';
@@ -12,7 +11,7 @@ describe(`${url} GET`, () => {
   let thriller: Genre;
   let comedy: Genre;
 
-  before(async () => {
+  beforeAll(async () => {
     server = await buildTestServer();
 
     action = buildGenre({ name: 'Action', slug: 'action' });
@@ -28,8 +27,8 @@ describe(`${url} GET`, () => {
       url,
     });
 
-    expect(response.statusCode).to.eq(200);
-    expect(response.json()).to.deep.equal(
+    expect(response.statusCode).toBe(200);
+    expect(response.json()).toStrictEqual(
       [action, comedy, thriller].map(({ _id, ...rest }) => ({
         id: _id.toHexString(),
         ...rest,
@@ -37,7 +36,7 @@ describe(`${url} GET`, () => {
     );
   });
 
-  after(async () => {
+  afterAll(async () => {
     await server.mongo.db.genres.deleteMany({});
     await server.close();
   });

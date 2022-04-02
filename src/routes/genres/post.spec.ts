@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import { buildGenre } from '../../../test/factories';
 import { buildTestServer } from '../../../test/server';
 import { GenreRequestBody } from './schemas';
@@ -13,7 +12,7 @@ const buildValidBody = (): GenreRequestBody => ({
 describe(`${url} POST`, () => {
   let server: Awaited<ReturnType<typeof buildTestServer>>;
 
-  before(async () => {
+  beforeAll(async () => {
     server = await buildTestServer();
   });
 
@@ -21,7 +20,7 @@ describe(`${url} POST`, () => {
     await server.mongo.db.genres.deleteMany({});
   });
 
-  after(async () => {
+  afterAll(async () => {
     await server.close();
   });
 
@@ -37,16 +36,14 @@ describe(`${url} POST`, () => {
       const payload = buildValidBody();
 
       const res = await postGenre(payload);
-      expect(res).to.haveOwnProperty('statusCode', 200);
+      expect(res).toHaveProperty('statusCode', 200);
 
       const genre = await server.mongo.db.genres.findOne();
-      if (!genre) expect.fail('No Genre stored');
+      if (!genre) throw new Error('No Genre stored');
 
-      expect(genre).to.include({
-        name: payload.name,
-      });
+      expect(genre).toHaveProperty('name', payload.name);
 
-      expect(res.json()).to.deep.eq({
+      expect(res.json()).toStrictEqual({
         id: genre._id.toHexString(),
         ...payload,
       });
@@ -65,8 +62,8 @@ describe(`${url} POST`, () => {
         const { name, ...rest } = buildValidBody();
         const res = await postGenre(rest);
 
-        expect(res).to.haveOwnProperty('statusCode', 400);
-        expect(res.json()).to.deep.eq(
+        expect(res).toHaveProperty('statusCode', 400);
+        expect(res.json()).toStrictEqual(
           badRequest("body should have required property 'name'"),
         );
       });
@@ -77,8 +74,8 @@ describe(`${url} POST`, () => {
           name: 'b'.repeat(41),
         });
 
-        expect(res).to.haveOwnProperty('statusCode', 400);
-        expect(res.json()).to.deep.eq(
+        expect(res).toHaveProperty('statusCode', 400);
+        expect(res.json()).toStrictEqual(
           badRequest('body.name should NOT be longer than 40 characters'),
         );
       });
@@ -90,8 +87,8 @@ describe(`${url} POST`, () => {
 
         const res = await postGenre(rest);
 
-        expect(res).to.haveOwnProperty('statusCode', 400);
-        expect(res.json()).to.deep.eq(
+        expect(res).toHaveProperty('statusCode', 400);
+        expect(res.json()).toStrictEqual(
           badRequest("body should have required property 'slug'"),
         );
       });
@@ -102,8 +99,8 @@ describe(`${url} POST`, () => {
           slug: 'a',
         });
 
-        expect(res).to.haveOwnProperty('statusCode', 400);
-        expect(res.json()).to.deep.eq(
+        expect(res).toHaveProperty('statusCode', 400);
+        expect(res.json()).toStrictEqual(
           badRequest('body.slug should NOT be shorter than 2 characters'),
         );
       });
@@ -114,8 +111,8 @@ describe(`${url} POST`, () => {
           slug: 'a'.repeat(41),
         });
 
-        expect(res).to.haveOwnProperty('statusCode', 400);
-        expect(res.json()).to.deep.eq(
+        expect(res).toHaveProperty('statusCode', 400);
+        expect(res.json()).toStrictEqual(
           badRequest('body.slug should NOT be longer than 40 characters'),
         );
       });
@@ -126,8 +123,8 @@ describe(`${url} POST`, () => {
           slug: 'this-is-not-!-valid',
         });
 
-        expect(res).to.haveOwnProperty('statusCode', 400);
-        expect(res.json()).to.deep.eq(
+        expect(res).toHaveProperty('statusCode', 400);
+        expect(res.json()).toStrictEqual(
           badRequest('body.slug should match format "slug"'),
         );
       });
@@ -135,15 +132,15 @@ describe(`${url} POST`, () => {
   });
 
   describe('409 (Conflict)', () => {
-    before(async () => {
+    beforeAll(async () => {
       await server.mongo.db.genres.insertOne(buildGenre());
     });
 
     it('returns status if slug is not unique', async () => {
       const res = await postGenre(buildValidBody());
 
-      expect(res).to.haveOwnProperty('statusCode', 409);
-      expect(res.json()).to.deep.eq({
+      expect(res).toHaveProperty('statusCode', 409);
+      expect(res.json()).toStrictEqual({
         error: 'Conflict',
         message: "A genre with slug 'action' already exists",
         statusCode: 409,

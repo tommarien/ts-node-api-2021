@@ -47,14 +47,13 @@ jobs:
     steps:
       - attach_workspace:
           at: ./
-      - run: mkdir ~/junit
       - run: yarn migrate up
-      - run:
-          command: MOCHA_FILE=~/junit/test-results.xml npx mocha -- --reporter=mocha-junit-reporter
+      - run: mkdir ~/jest
+      - run: JEST_JUNIT_OUTPUT_DIR=~/jest JEST_JUNIT_OUTPUT_NAME=test--junit.xml yarn jest --runInBand --ci --reporters=default --reporters=jest-junit
       - store_test_results:
-          path: ~/junit
+          path: ~/jest
       - store_artifacts:
-          path: ~/junit
+          path: ~/jest
 
 workflows:
   version: 2

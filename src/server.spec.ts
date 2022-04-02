@@ -1,6 +1,4 @@
-import { expect } from 'chai';
 import crypto from 'crypto';
-import sinon from 'sinon';
 import { buildTestServer } from '../test/server';
 
 async function setupServer() {
@@ -20,15 +18,11 @@ async function setupServer() {
 describe('Server', () => {
   let server: Awaited<ReturnType<typeof setupServer>>;
 
-  before(async () => {
+  beforeAll(async () => {
     server = await setupServer();
   });
 
-  after(() => server.close());
-
-  afterEach(() => {
-    sinon.restore();
-  });
+  afterAll(() => server.close());
 
   it('echoes the value of the x-request-id header', async () => {
     const reqId = 'cf03dfbf-ad44-4d24-b1b3-6a044bdbf570';
@@ -41,22 +35,23 @@ describe('Server', () => {
       },
     });
 
-    expect(response.statusCode).to.equal(200);
-    expect(response.json()).to.deep.equal({ reqId });
+    expect(response.statusCode).toBe(200);
+    expect(response.json()).toStrictEqual({ reqId });
   });
 
   it('creates a new request id using randomUUID', async () => {
     const reqId = 'request-id';
 
-    const randomUUIDStub = sinon.stub(crypto, 'randomUUID').returns(reqId);
+    const randomUUIDStub = jest.spyOn(crypto, 'randomUUID');
+    randomUUIDStub.mockReturnValue(reqId);
 
     const response = await server.inject({
       method: 'GET',
       url: '/echo-request-id',
     });
 
-    expect(response.statusCode).to.equal(200);
-    expect(response.json()).to.deep.equal({ reqId });
-    expect(randomUUIDStub.callCount).to.be.equal(1);
+    expect(response.statusCode).toBe(200);
+    expect(response.json()).toStrictEqual({ reqId });
+    expect(randomUUIDStub).toBeCalledTimes(1);
   });
 });

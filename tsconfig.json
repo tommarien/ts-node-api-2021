@@ -8,8 +8,13 @@
     "allowJs": true,
     "outDir": "./dist" /* Redirect output structure to the directory. */,
     "noUncheckedIndexedAccess": true /* Include 'undefined' in index signature results */,
-    "types": ["mocha"],
     "resolveJsonModule": true /* Allow json imports */
   },
-  "include": ["src", "migrations", "test", "migrate-mongo-config.js"]
+  "include": [
+    "src",
+    "migrations",
+    "test",
+    "migrate-mongo-config.js",
+    "jest.config.ts"
+  ]
 }

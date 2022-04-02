@@ -6,7 +6,8 @@
     "prettier"
   ],
   "env": {
-    "node": true
+    "node": true,
+    "jest": true
   },
   "parserOptions": {
     "project": "./tsconfig.json"
@@ -15,7 +16,8 @@
     "import/prefer-default-export": "off",
     "no-plusplus": "off",
     "no-underscore-dangle": "off",
-    "no-restricted-syntax": [ // Removed ForOfStatement
+    "no-restricted-syntax": [
+      // Removed ForOfStatement
       "error",
       {
         "selector": "ForInStatement",
@@ -34,9 +36,7 @@
   },
   "overrides": [
     {
-      "files": [
-        "**/*.spec.ts"
-      ],
+      "files": ["**/*.spec.ts"],
       "rules": {
         "no-param-reassign": "off",
         "@typescript-eslint/explicit-module-boundary-types": "off",
