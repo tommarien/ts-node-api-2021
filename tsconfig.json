@@ -8,9 +8,7 @@
     "allowJs": true,
     "outDir": "./dist" /* Redirect output structure to the directory. */,
     "noUncheckedIndexedAccess": true /* Include 'undefined' in index signature results */,
-    "types": ["reflect-metadata", "mocha"],
-    "experimentalDecorators": true /* Enables experimental support for ES7 decorators. */,
-    "emitDecoratorMetadata": true /* Enables experimental support for emitting type metadata for decorators. */,
+    "types": ["mocha"],
     "resolveJsonModule": true /* Allow json imports */
   },
   "include": ["src", "migrations", "test", "migrate-mongo-config.js"]

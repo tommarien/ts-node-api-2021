@@ -5,9 +5,16 @@ import GenreService, {
   GenreResponseBody,
 } from '../../services/genre-service';
 import { Tag } from '../../tag';
+import { assertHas } from '../../utils/type.utils';
 import { genreRequestBodySchema, genreResponseBodySchema } from './schemas';
 
 const genreApi: FastifyPluginAsync = async (server) => {
+  server.decorateRequest('service', {
+    getter() {
+      return new GenreService(server.mongo.db);
+    },
+  });
+
   server.get<{ Reply: GenreResponseBody[] }>(
     '/',
     {
@@ -20,8 +27,8 @@ const genreApi: FastifyPluginAsync = async (server) => {
       },
     },
     (req) => {
-      const service = req.container.resolve(GenreService);
-      return service.list();
+      assertHas<GenreService, 'service'>('service', req);
+      return req.service.list();
     },
   );
 
@@ -40,8 +47,8 @@ const genreApi: FastifyPluginAsync = async (server) => {
       },
     },
     (req) => {
-      const service = req.container.resolve(GenreService);
-      return service.save(req.body);
+      assertHas<GenreService, 'service'>('service', req);
+      return req.service.save(req.body);
     },
   );
 };

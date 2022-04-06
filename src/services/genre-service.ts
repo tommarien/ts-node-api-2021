@@ -1,6 +1,5 @@
 import { Conflict } from 'http-errors';
 import { MongoServerError } from 'mongodb';
-import { injectable } from 'tsyringe';
 import { DbContext, Genre } from '../db';
 
 export interface GenreRequestBody {
@@ -18,7 +17,6 @@ const map = ({ _id, name, slug }: Genre): GenreResponseBody => ({
   slug,
 });
 
-@injectable()
 export default class GenreService {
   constructor(private readonly db: DbContext) {}
 

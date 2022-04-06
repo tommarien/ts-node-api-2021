@@ -1,4 +1,3 @@
-import 'reflect-metadata';
 import createServer from './server';
 import getConfig from './config/config';
 

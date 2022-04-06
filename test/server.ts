@@ -1,5 +1,3 @@
-import 'reflect-metadata';
-
 import fastify from 'fastify';
 import createServer from '../src/server';
 
