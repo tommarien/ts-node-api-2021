@@ -1,16 +1,36 @@
-import Schema from 'fluent-json-schema';
+import { JSONSchemaType } from 'ajv';
 
-export const genreRequestBodySchema = Schema.object()
-  .prop(
-    'slug',
-    Schema.string()
-      .minLength(2)
-      .maxLength(40)
-      .raw({ format: 'slug' })
-      .required(),
-  )
-  .prop('name', Schema.string().maxLength(40).required());
+export interface GenreRequestBody {
+  slug: string;
+  name: string;
+}
 
-export const genreResponseBodySchema = genreRequestBodySchema.extend(
-  Schema.object().prop('id', Schema.string().raw({ format: 'object-id' })),
-);
+export interface GenreResponseBody extends GenreRequestBody {
+  id: string;
+}
+
+export const genreRequestBodySchema: JSONSchemaType<GenreRequestBody> = {
+  type: 'object',
+  properties: {
+    name: {
+      type: 'string',
+      maxLength: 40,
+    },
+    slug: { type: 'string', minLength: 2, maxLength: 40, format: 'slug' },
+  },
+  required: ['name', 'slug'],
+};
+
+export const genreResponseBodySchema: JSONSchemaType<GenreResponseBody> = {
+  type: 'object',
+  properties: {
+    id: {
+      type: 'string',
+      format: 'object-id',
+    },
+    ...(genreRequestBodySchema.properties as NonNullable<
+      typeof genreRequestBodySchema.properties
+    >),
+  },
+  required: ['id', ...genreRequestBodySchema.required],
+};

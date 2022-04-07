@@ -1,15 +1,7 @@
 import { Conflict } from 'http-errors';
 import { MongoServerError } from 'mongodb';
-import { DbContext, Genre } from '../db';
-
-export interface GenreRequestBody {
-  slug: string;
-  name: string;
-}
-
-export interface GenreResponseBody extends GenreRequestBody {
-  id: string;
-}
+import { DbContext, Genre } from '../../db';
+import { GenreRequestBody, GenreResponseBody } from './schemas';
 
 const map = ({ _id, name, slug }: Genre): GenreResponseBody => ({
   id: _id.toHexString(),

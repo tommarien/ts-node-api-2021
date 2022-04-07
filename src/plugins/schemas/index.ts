@@ -1,25 +1,57 @@
+import { JSONSchemaType } from 'ajv';
 import { FastifyPluginCallback } from 'fastify';
 import fp from 'fastify-plugin';
-import Schema from 'fluent-json-schema';
 
-const errorReponseSchema = Schema.object()
-  .prop('statusCode', Schema.number().required())
-  .prop('error', Schema.string().required())
-  .prop('message', Schema.string().required());
+interface HttpErrorResponse {
+  statusCode: number;
+  error: string;
+  message?: string;
+}
 
-const badRequestSchema = Schema.object()
-  .id('badRequest')
-  .default([{ statusCode: 400, error: 'Bad Request' }])
-  .extend(errorReponseSchema);
+const createHttpErrorSchema = ({
+  statusCode,
+  error,
+  id,
+}: {
+  statusCode: number;
+  error: string;
+  id: string;
+}): JSONSchemaType<HttpErrorResponse> => ({
+  $id: id,
+  type: 'object',
+  properties: {
+    statusCode: {
+      type: 'number',
+      default: statusCode,
+    },
+    error: {
+      type: 'string',
+      default: error,
+    },
+    message: {
+      type: 'string',
+      nullable: true,
+    },
+  },
+  required: ['statusCode', 'error'],
+});
 
-const conflictSchema = Schema.object()
-  .id('conflict')
-  .default([{ statusCode: 409, error: 'Conflict' }])
-  .extend(errorReponseSchema);
+const httpErrorSchemas: Record<string, Omit<HttpErrorResponse, 'id'>> = {
+  badRequest: {
+    statusCode: 400,
+    error: 'Bad Request',
+  },
+  conflict: {
+    statusCode: 409,
+    error: 'Conflict',
+  },
+};
 
 const commonSchemasPlugin: FastifyPluginCallback = (instance, _opts, done) => {
-  instance.addSchema(badRequestSchema.valueOf());
-  instance.addSchema(conflictSchema.valueOf());
+  Object.entries(httpErrorSchemas).forEach(([id, { statusCode, error }]) => {
+    const schema = createHttpErrorSchema({ id, statusCode, error });
+    instance.addSchema(schema);
+  });
 
   done();
 };

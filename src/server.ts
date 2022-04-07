@@ -1,4 +1,4 @@
-import { Ajv } from '@fastify/ajv-compiler';
+import Ajv from 'ajv';
 import { randomUUID } from 'crypto';
 import fastify from 'fastify';
 import autoLoad from 'fastify-autoload';
