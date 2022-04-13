@@ -1587,16 +1587,17 @@ fastify-static@^4.0.0:
     readable-stream "^3.4.0"
     send "^0.17.1"
 
-fastify-swagger@^5.1.0:
-  version "5.1.0"
-  resolved "https://registry.yarnpkg.com/fastify-swagger/-/fastify-swagger-5.1.0.tgz#c00049540cd7c752da67f90beb614f82d27ad4e4"
-  integrity sha512-blV4vhuGXrFXo7+yR287D0v4gSxicgOQzfMTWS9nbjA2wIaf+/sxHEmaLUphnKilj3siURb9Bx69gy1eomv8Ng==
+fastify-swagger@^5.1.1:
+  version "5.1.1"
+  resolved "https://registry.yarnpkg.com/fastify-swagger/-/fastify-swagger-5.1.1.tgz#9aae3f7edb629c98e534841c3c0a1347f9321cd1"
+  integrity sha512-7DA0zS8CCV5r+gbLgWdeeKEwLrVbbOxLMJVUfOl1H9+wSildSLD8hok2TLX7s3c28wOjF8+iZRxsz/hBDzfdIw==
   dependencies:
     fastify-plugin "^3.0.0"
     fastify-static "^4.0.0"
     js-yaml "^4.0.0"
     json-schema-resolver "^1.3.0"
     openapi-types "^10.0.0"
+    rfdc "^1.3.0"
 
 fastify@^3.28.0:
   version "3.28.0"
