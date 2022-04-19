@@ -1563,10 +1563,10 @@ fast-safe-stringify@^2.0.7, fast-safe-stringify@^2.0.8:
   resolved "https://registry.yarnpkg.com/fast-safe-stringify/-/fast-safe-stringify-2.1.1.tgz#c406a83b6e70d9e35ce3b30a81141df30aeba884"
   integrity sha512-W+KJc2dmILlPplD/H4K9l9LcAHAfPtP6BY84uVLXQ6Evcz9Lcg33Y2z1IVblT6xdY54PXYVHEv+0Wpq8Io6zkA==
 
-fastify-autoload@^3.11.0:
-  version "3.11.0"
-  resolved "https://registry.yarnpkg.com/fastify-autoload/-/fastify-autoload-3.11.0.tgz#7c2547366ea65229b5d0c72f60004ff46cc1a200"
-  integrity sha512-vxinYqk5hc1drINce1/c5kRHWMH4Rj8GzR2Ka40yg8qCasqyRTyt4lXl1WvgR4WDrOTtkr1d6R/Sd4s3k6zy9w==
+fastify-autoload@^3.12.0:
+  version "3.12.0"
+  resolved "https://registry.yarnpkg.com/fastify-autoload/-/fastify-autoload-3.12.0.tgz#912c7c48c83e732cc76919b4f3713ee884fc8557"
+  integrity sha512-qm8HG8V24A0AdcIjGMMTnyKQj6yzEbdcXHbWjzPtYPReGo4D4Ki7oRLDocYQJVpaOxlcLJSbadfMhZTu3+G6oQ==
   dependencies:
     pkg-up "^3.1.0"
     semver "^7.3.5"
