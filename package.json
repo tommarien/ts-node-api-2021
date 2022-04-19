@@ -35,7 +35,7 @@
   },
   "scripts": {
     "build": "tsc --project tsconfig.prod.json --sourceMap",
-    "clean": "rimraf .nyc_output dist",
+    "clean": "rimraf coverage dist",
     "coverage": "c8 npm run test",
     "lint": "concurrently -n tsc,lint, -c \"cyan.bold,green.bold\" \"tsc --noEmit --pretty\" \"eslint --ext .js,.ts ./\"",
     "migrate": "NODE_OPTIONS='-r dotenv/config' ts-node node_modules/.bin/migrate-mongo",
