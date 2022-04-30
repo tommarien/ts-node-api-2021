@@ -1,7 +1,7 @@
+import autoLoad from '@fastify/autoload';
 import Ajv from 'ajv';
 import { randomUUID } from 'crypto';
 import fastify from 'fastify';
-import autoLoad from 'fastify-autoload';
 import path from 'path';
 import { Config } from './config/config';
 
