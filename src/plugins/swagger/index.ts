@@ -1,8 +1,8 @@
+import swagger from '@fastify/swagger';
 import { FastifyPluginCallback } from 'fastify';
 import fp from 'fastify-plugin';
-import swagger from 'fastify-swagger';
-import { Config } from '../../config/config';
 import { version } from '../../../package.json';
+import { Config } from '../../config/config';
 import { Tag } from '../../tag';
 
 const swaggerPlugin: FastifyPluginCallback<Config> = (instance, opts, done) => {
