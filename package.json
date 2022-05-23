@@ -67,7 +67,7 @@
     "prettier": "^2.6.2",
     "rimraf": "^3.0.2",
     "sinon": "^14.0.0",
-    "ts-node": "^10.7.0",
+    "ts-node": "^10.8.0",
     "typescript": "^4.6.4"
   },
   "dependencies": {
@@ -81,6 +81,6 @@
     "http-errors": "^2.0.0",
     "migrate-mongo": "^9.0.0",
     "mocha-junit-reporter": "^2.0.2",
-    "mongodb": "^4.5.0"
+    "mongodb": "^4.6.0"
   }
 }
