@@ -55,7 +55,7 @@
     "c8": "^7.11.2",
     "chai": "^4.3.6",
     "concurrently": "^7.2.1",
-    "dotenv": "^16.0.0",
+    "dotenv": "^16.0.1",
     "eslint": "^8.15.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-airbnb-typescript": "^17.0.0",
