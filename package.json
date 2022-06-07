@@ -68,7 +68,7 @@
     "rimraf": "^3.0.2",
     "sinon": "^14.0.0",
     "ts-node": "^10.8.0",
-    "typescript": "^4.6.4"
+    "typescript": "^4.7.3"
   },
   "dependencies": {
     "@fastify/autoload": "^4.0.1",
