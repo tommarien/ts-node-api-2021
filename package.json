@@ -44,7 +44,7 @@
     "test": "MONGO_URI='mongodb://localhost/webshop-node-2021-test' mocha"
   },
   "devDependencies": {
-    "@tsconfig/node16": "^1.0.2",
+    "@tsconfig/node16": "^1.0.3",
     "@types/chai": "^4.3.1",
     "@types/http-errors": "^1.8.2",
     "@types/mocha": "^9.1.1",
@@ -75,7 +75,7 @@
     "@fastify/swagger": "^6.1.0",
     "ajv": "^8.11.0",
     "env-schema": "^5.0.0",
-    "fastify": "^3.29.0",
+    "fastify": "^4.1.0",
     "fastify-plugin": "^3.0.1",
     "fluent-json-schema": "^3.1.0",
     "http-errors": "^2.0.0",
