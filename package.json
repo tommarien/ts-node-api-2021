@@ -44,7 +44,7 @@
     "test": "MONGO_URI='mongodb://localhost/webshop-node-2021-test' mocha"
   },
   "devDependencies": {
-    "@tsconfig/node16": "^1.0.2",
+    "@tsconfig/node16": "^1.0.3",
     "@types/chai": "^4.3.1",
     "@types/http-errors": "^1.8.2",
     "@types/mocha": "^9.1.1",
@@ -54,7 +54,7 @@
     "@typescript-eslint/parser": "^5.27.1",
     "c8": "^7.11.3",
     "chai": "^4.3.6",
-    "concurrently": "^7.2.1",
+    "concurrently": "^7.2.2",
     "dotenv": "^16.0.1",
     "eslint": "^8.17.0",
     "eslint-config-airbnb-base": "^15.0.0",
