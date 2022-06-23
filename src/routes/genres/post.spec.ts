@@ -67,7 +67,7 @@ describe(`${url} POST`, () => {
 
         expect(res).to.haveOwnProperty('statusCode', 400);
         expect(res.json()).to.deep.eq(
-          badRequest("body should have required property 'name'"),
+          badRequest("body must have required property 'name'"),
         );
       });
 
@@ -79,7 +79,7 @@ describe(`${url} POST`, () => {
 
         expect(res).to.haveOwnProperty('statusCode', 400);
         expect(res.json()).to.deep.eq(
-          badRequest('body.name should NOT be longer than 40 characters'),
+          badRequest('body/name must NOT have more than 40 characters'),
         );
       });
     });
@@ -92,7 +92,7 @@ describe(`${url} POST`, () => {
 
         expect(res).to.haveOwnProperty('statusCode', 400);
         expect(res.json()).to.deep.eq(
-          badRequest("body should have required property 'slug'"),
+          badRequest("body must have required property 'slug'"),
         );
       });
 
@@ -104,7 +104,7 @@ describe(`${url} POST`, () => {
 
         expect(res).to.haveOwnProperty('statusCode', 400);
         expect(res.json()).to.deep.eq(
-          badRequest('body.slug should NOT be shorter than 2 characters'),
+          badRequest('body/slug must NOT have fewer than 2 characters'),
         );
       });
 
@@ -116,7 +116,7 @@ describe(`${url} POST`, () => {
 
         expect(res).to.haveOwnProperty('statusCode', 400);
         expect(res.json()).to.deep.eq(
-          badRequest('body.slug should NOT be longer than 40 characters'),
+          badRequest('body/slug must NOT have more than 40 characters'),
         );
       });
 
@@ -128,7 +128,7 @@ describe(`${url} POST`, () => {
 
         expect(res).to.haveOwnProperty('statusCode', 400);
         expect(res.json()).to.deep.eq(
-          badRequest('body.slug should match format "slug"'),
+          badRequest('body/slug must match format "slug"'),
         );
       });
     });
