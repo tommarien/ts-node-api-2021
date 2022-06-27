@@ -15,7 +15,7 @@ describe('Config', () => {
   it('applies the defaults', () => {
     expect(getConfig()).to.deep.equal({
       environment: 'local',
-      server: { port: '3000' },
+      server: { port: 3000 },
       mongo: { uri: 'mongodb://localhost/fake' },
       logger: { level: 'info' },
     });
@@ -30,7 +30,7 @@ describe('Config', () => {
   });
 
   it('configures the server', () => {
-    const configuredPort = '4000';
+    const configuredPort = 4000;
     Object.assign(process.env, { PORT: configuredPort });
 
     expect(getConfig())

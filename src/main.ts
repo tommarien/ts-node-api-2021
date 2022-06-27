@@ -13,7 +13,7 @@ async function main() {
 
   const server = createServer(config);
 
-  await server.listen(config.server.port);
+  await server.listen({ port: config.server.port });
 
   const signals: NodeJS.Signals[] = ['SIGINT', 'SIGTERM'];
   for (const signal of signals) {

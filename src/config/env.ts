@@ -14,7 +14,7 @@ const ENVIRONMENTS = ['local', 'test', 'dev', 'sta', 'pro'] as const;
 export interface Env {
   LOG_LEVEL?: typeof ALLOWED_LOGLEVELS[number];
   MONGO_URI: string;
-  PORT?: string;
+  PORT?: number;
   RUNTIME_ENV?: typeof ENVIRONMENTS[number];
 }
 
@@ -30,7 +30,7 @@ export const envSchema: JSONSchemaType<Env> = {
       type: 'string',
     },
     PORT: {
-      type: 'string',
+      type: 'number',
       nullable: true,
     },
     RUNTIME_ENV: {
