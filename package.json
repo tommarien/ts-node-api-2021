@@ -49,7 +49,7 @@
     "@types/http-errors": "^1.8.2",
     "@types/mocha": "^9.1.1",
     "@types/node": "^16.11.43",
-    "@types/sinon": "^10.0.11",
+    "@types/sinon": "^10.0.12",
     "@typescript-eslint/eslint-plugin": "^5.30.4",
     "@typescript-eslint/parser": "^5.30.4",
     "c8": "^7.11.3",
