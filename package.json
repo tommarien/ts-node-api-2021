@@ -50,7 +50,7 @@
     "@types/mocha": "^9.1.1",
     "@types/node": "^16.11.45",
     "@types/sinon": "^10.0.12",
-    "@typescript-eslint/eslint-plugin": "^5.30.5",
+    "@typescript-eslint/eslint-plugin": "^5.30.6",
     "@typescript-eslint/parser": "^5.30.6",
     "c8": "^7.11.3",
     "chai": "^4.3.6",
