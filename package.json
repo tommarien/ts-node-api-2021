@@ -81,6 +81,6 @@
     "http-errors": "^2.0.0",
     "migrate-mongo": "^9.0.0",
     "mocha-junit-reporter": "^2.0.2",
-    "mongodb": "^4.8.0"
+    "mongodb": "^4.8.1"
   }
 }
