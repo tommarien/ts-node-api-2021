@@ -17,7 +17,7 @@ export default class GenreService {
       const { insertedId } = await this.db.genres.insertOne(genre);
       return map({ _id: insertedId, ...genre });
     } catch (err) {
-      if (err instanceof MongoServerError) {
+      if (err instanceof MongoServerError && err.code === 11000) {
         throw new Conflict(`A genre with slug '${genre.slug}' already exists`);
       }
 
