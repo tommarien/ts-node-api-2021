@@ -10,7 +10,7 @@ export interface Config {
 
 export default function getConfig(): Config {
   const env = envSchema<Env>({
-    dotenv: !process.env.TAP,
+    dotenv: true,
     schema,
   });
 
