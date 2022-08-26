@@ -11,5 +11,11 @@
     "types": ["mocha"],
     "resolveJsonModule": true /* Allow json imports */
   },
-  "include": ["src", "migrations", "test", "migrate-mongo-config.js"]
+  "include": [
+    "src",
+    "migrations",
+    "test",
+    "migrations",
+    "migrate-mongo-config.js"
+  ]
 }
