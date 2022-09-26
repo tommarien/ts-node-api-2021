@@ -70,10 +70,10 @@
     readable-stream "^3.4.0"
     send "^0.18.0"
 
-"@fastify/swagger@^7.6.0":
-  version "7.6.0"
-  resolved "https://registry.yarnpkg.com/@fastify/swagger/-/swagger-7.6.0.tgz#0c0b365d70fd3549465d8a8f866fa5d1bccbe0aa"
-  integrity sha512-NzLxsf4KeI0HaPMVs0+Mtqn2ofGm8PF7vWqaWqmh9mkTxclxMvMyrOuQ/yu87d+fX2Sd9mYWVmmvIAmtnMtwaA==
+"@fastify/swagger@^7.6.1":
+  version "7.6.1"
+  resolved "https://registry.yarnpkg.com/@fastify/swagger/-/swagger-7.6.1.tgz#5b8a790378cc13c040975e0f300d710a20317132"
+  integrity sha512-fpwblS7aOfnVymdRyKI3Zw/ZNt2u0oGm7KQgQ/itmd4Hlh/LKNNoWg6R/+eLa9H/4JTd34ZRRC3mNKhkVl5Kdw==
   dependencies:
     "@fastify/static" "^6.0.0"
     fastify-plugin "^4.0.0"
