@@ -16,6 +16,7 @@ async function main() {
   await server.listen({ port: config.server.port, host: '0.0.0.0' });
 
   const signals: NodeJS.Signals[] = ['SIGINT', 'SIGTERM'];
+
   for (const signal of signals) {
     // Use once() so that double signals exits the app
     process.once(signal, () => {
