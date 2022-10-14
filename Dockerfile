@@ -1,4 +1,4 @@
-FROM node:16.17.1-alpine
+FROM node:16.18.0-alpine
 WORKDIR /usr
 COPY package.json ./
 COPY yarn.lock ./
@@ -10,7 +10,7 @@ COPY migrate-mongo-config.js ./
 RUN yarn install --frozen-lockfile
 RUN yarn build
 
-FROM node:16.17.1-alpine
+FROM node:16.18.0-alpine
 WORKDIR /usr
 COPY package.json ./
 COPY yarn.lock ./
