@@ -1,4 +1,5 @@
 import swagger from '@fastify/swagger';
+import swaggerUi from '@fastify/swagger-ui';
 import { FastifyPluginCallback } from 'fastify';
 import fp from 'fastify-plugin';
 import { version } from '../../../package.json';
@@ -8,8 +9,6 @@ import { Tag } from '../../tag';
 const swaggerPlugin: FastifyPluginCallback<Config> = (instance, opts, done) => {
   if (opts.environment !== 'pro') {
     instance.register(swagger, {
-      routePrefix: '/docs',
-      exposeRoute: true,
       swagger: {
         info: {
           title: 'WebShop Demo API',
@@ -17,6 +16,13 @@ const swaggerPlugin: FastifyPluginCallback<Config> = (instance, opts, done) => {
           version,
         },
         tags: [{ name: Tag.Genre, description: 'Genre management' }],
+      },
+    });
+
+    instance.register(swaggerUi, {
+      routePrefix: '/docs',
+      uiConfig: {
+        validatorUrl: null,
       },
     });
   }
