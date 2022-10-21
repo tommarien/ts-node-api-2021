@@ -38,10 +38,10 @@
     ajv-formats "^2.1.1"
     fast-uri "^2.0.0"
 
-"@fastify/autoload@^5.4.0":
-  version "5.4.0"
-  resolved "https://registry.yarnpkg.com/@fastify/autoload/-/autoload-5.4.0.tgz#3d09c804382e2093a40b52ae77f48db62e5ac3c7"
-  integrity sha512-aUct8AERleLb6ZVqIFW3qdwJA2/ILVDTQyCr0qD909RMP4axcmIhJmV9iDAzDqpUDipZ29I+Hp43+PiJsk3oWw==
+"@fastify/autoload@^5.4.1":
+  version "5.4.1"
+  resolved "https://registry.yarnpkg.com/@fastify/autoload/-/autoload-5.4.1.tgz#79323e54eabc0fd1e1a155c56094598d250c45b6"
+  integrity sha512-BiNyQ7FnM5zlVDC4JhbxKsMa9QxxUMgoMFrZ86l8m3HpHX3cvNWDdwMWmA32TDJJkzWnKoZE6HHBFPb0+Fu1Rw==
   dependencies:
     pkg-up "^3.1.0"
 
