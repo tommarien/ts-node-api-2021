@@ -82,6 +82,6 @@
     "fluent-json-schema": "^4.0.0",
     "http-errors": "^2.0.0",
     "migrate-mongo": "^9.0.0",
-    "mongodb": "^4.10.0"
+    "mongodb": "^4.11.0"
   }
 }
