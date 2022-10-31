@@ -775,10 +775,10 @@
     fastify-plugin "^4.0.0"
     openapi-types "^12.0.2"
 
-"@fastify/swagger@^8.0.0":
-  version "8.0.0"
-  resolved "https://registry.yarnpkg.com/@fastify/swagger/-/swagger-8.0.0.tgz#c8c60fe0899928df9b9eef3de52fafeaa26c821a"
-  integrity sha512-e+f8U8vwYXV5aXPLvEegGIFitRJi2Peqop10u7Qo5Eoc6jl/ovgK7RU2RA8jyZdCkgX4X8xx5zgaQM85eDoQlg==
+"@fastify/swagger@^8.1.0":
+  version "8.1.0"
+  resolved "https://registry.yarnpkg.com/@fastify/swagger/-/swagger-8.1.0.tgz#dc3608317ba26406e1d04e0c94d83e96110d8afe"
+  integrity sha512-i0keOF4O8x/02vk2QV2raWEB4TdSnEob5IWpOerq2VRyIV0W2jtq2Ujr5bSzmlg3ZiGM/t6rBfkfRTIez7YAXA==
   dependencies:
     fastify-plugin "^4.0.0"
     json-schema-resolver "^2.0.0"
