@@ -76,7 +76,7 @@
     "@fastify/swagger": "^8.1.0",
     "@fastify/swagger-ui": "^1.1.0",
     "ajv": "^8.11.2",
-    "env-schema": "^5.1.0",
+    "env-schema": "^5.1.1",
     "fastify": "^4.9.2",
     "fastify-plugin": "^4.3.0",
     "fluent-json-schema": "^4.0.0",
