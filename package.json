@@ -75,7 +75,7 @@
     "@fastify/autoload": "^5.4.1",
     "@fastify/swagger": "^8.1.0",
     "@fastify/swagger-ui": "^1.2.0",
-    "ajv": "^8.11.2",
+    "ajv": "^8.12.0",
     "env-schema": "^5.2.0",
     "fastify": "^4.12.0",
     "fastify-plugin": "^4.4.0",
