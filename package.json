@@ -44,7 +44,7 @@
     "test": "MONGO_URI='mongodb://localhost/webshop-node-2021-test' mocha"
   },
   "devDependencies": {
-    "@tsconfig/node16": "^1.0.3",
+    "@tsconfig/node18": "^1.0.1",
     "@types/chai": "^4.3.4",
     "@types/http-errors": "^2.0.1",
     "@types/mocha": "^10.0.1",

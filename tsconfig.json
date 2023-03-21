@@ -1,5 +1,5 @@
 {
-  "extends": "@tsconfig/node16",
+  "extends": "@tsconfig/node18",
   "ts-node": {
     "transpileOnly": true /* Use TypeScript's faster transpileModule */,
     "files": true /* Load files, include and exclude from tsconfig.json on startup */
