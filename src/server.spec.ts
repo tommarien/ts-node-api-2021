@@ -46,7 +46,7 @@ describe('Server', () => {
   });
 
   it('creates a new request id using randomUUID', async () => {
-    const reqId = 'request-id';
+    const reqId = 'cf03dfbf-ad44-4d24-b1b3-6a044bdbf570';
 
     const randomUUIDStub = sinon.stub(crypto, 'randomUUID').returns(reqId);
 
