@@ -3,7 +3,7 @@ version: 2.1
 executors:
   node_lts: # declares a reusable executor
     docker:
-      - image: &NODE_VERSION node:18.15.0
+      - image: &NODE_VERSION node:18.16.0
 
 jobs:
   build:
