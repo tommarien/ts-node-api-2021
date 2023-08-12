@@ -1,8 +1,8 @@
+import { randomUUID } from 'node:crypto';
+import path from 'node:path';
 import autoLoad from '@fastify/autoload';
 import Ajv from 'ajv';
-import { randomUUID } from 'crypto';
 import fastify from 'fastify';
-import path from 'path';
 import { Config } from './config/config';
 
 export default function createServer(

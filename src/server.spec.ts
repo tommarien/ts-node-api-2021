@@ -1,5 +1,5 @@
+import crypto from 'node:crypto';
 import { expect } from 'chai';
-import crypto from 'crypto';
 import sinon from 'sinon';
 import { buildTestServer } from '../test/server';
 
