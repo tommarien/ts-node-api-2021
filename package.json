@@ -44,28 +44,28 @@
     "test": "MONGO_URI='mongodb://localhost/webshop-node-2021-test' mocha"
   },
   "devDependencies": {
-    "@tsconfig/node18": "^18.2.0",
+    "@tsconfig/node18": "^18.2.1",
     "@types/chai": "^4.3.5",
     "@types/http-errors": "^2.0.1",
     "@types/mocha": "^10.0.1",
     "@types/node": "18.17.5",
     "@types/sinon": "^10.0.16",
-    "@typescript-eslint/eslint-plugin": "^6.3.0",
-    "@typescript-eslint/parser": "^6.3.0",
+    "@typescript-eslint/eslint-plugin": "^6.4.1",
+    "@typescript-eslint/parser": "^6.4.1",
     "c8": "^8.0.1",
     "chai": "^4.3.7",
-    "concurrently": "^8.2.0",
+    "concurrently": "^8.2.1",
     "dotenv": "^16.3.1",
     "eslint": "^8.47.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-airbnb-typescript": "^17.1.0",
     "eslint-config-prettier": "^9.0.0",
-    "eslint-plugin-import": "^2.28.0",
+    "eslint-plugin-import": "^2.28.1",
     "mocha": "^10.2.0",
     "mocha-junit-reporter": "^2.2.1",
     "nodemon": "^3.0.1",
     "pino-pretty": "^10.2.0",
-    "prettier": "^3.0.1",
+    "prettier": "^3.0.2",
     "rimraf": "^5.0.1",
     "sinon": "^15.2.0",
     "ts-node": "^10.9.1",
@@ -73,7 +73,7 @@
   },
   "dependencies": {
     "@fastify/autoload": "^5.7.1",
-    "@fastify/swagger": "^8.8.0",
+    "@fastify/swagger": "^8.9.0",
     "@fastify/swagger-ui": "^1.9.3",
     "ajv": "^8.12.0",
     "env-schema": "^5.2.0",
@@ -82,6 +82,6 @@
     "fluent-json-schema": "^4.1.1",
     "http-errors": "^2.0.0",
     "migrate-mongo": "^10.0.0",
-    "mongodb": "^5.7.0"
+    "mongodb": "^5.8.0"
   }
 }
